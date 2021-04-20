@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <EditText
+        android:id="@+id/inputUsernameSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="350dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/inputUsernameSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputUsernameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/usernameErrorSignup" />
+
+    <EditText
+        android:id="@+id/inputPasswordSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+        app:layout_constraintStart_toStartOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/emailError" />
+
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInfo" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up2"
+        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordError" />
+
+    <Button
+        android:id="@+id/showPasswordSignup"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="67dp"
+        android:layout_height="33sp"
+        android:backgroundTint="@android:color/white"
+        android:text="@string/show"
+        android:textAlignment="textStart"
+        android:textColor="#00B8D4"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toEndOf="@+id/confirmPassword"
+        app:layout_constraintTop_toTopOf="@+id/inputPasswordSignup" />
+
+    <Button
+        android:id="@+id/showConfirmPasswordSignup"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="67dp"
+        android:layout_height="33sp"
+        android:backgroundTint="@android:color/white"
+        android:text="@string/show"
+        android:textAlignment="textStart"
+        android:textColor="#00B8D4"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/confirmPassword"
+        app:layout_constraintStart_toEndOf="@+id/confirmPassword"
+        app:layout_constraintTop_toTopOf="@+id/confirmPassword" />
+
+    <TextView
+        android:id="@+id/usernameErrorSignup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputUsernameSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputUsernameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsernameSignup" />
+
+    <TextView
+        android:id="@+id/emailError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+        app:layout_constraintStart_toStartOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+
+    <TextView
+        android:id="@+id/passwordErrorSignup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/inputPasswordSignup" />
+
+    <TextView
+        android:id="@+id/passwordInfo"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/passwordErrorSignup" />
+
+    <TextView
+        android:id="@+id/confirmPasswordError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
