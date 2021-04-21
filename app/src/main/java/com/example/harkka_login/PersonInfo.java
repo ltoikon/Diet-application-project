@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class PersonInfo {
     private ArrayList<Double> weightHistory = new ArrayList<>();
     private ArrayList<Double> bmiHistory = new ArrayList<>();
-    //double parempi integerin sijaan KORJAA luokkakaavioon
     private double height;
     FileIO fetch = new FileIO();
+
+    //TODO constructor for actual use
 
     public PersonInfo(Double inputHeight){
         height = inputHeight;

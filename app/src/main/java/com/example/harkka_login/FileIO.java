@@ -9,7 +9,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-
+//TODO move unnecessary stuff from method to object calling it
+//TODO read and write as objects
 public class FileIO {
     private String fileName;
     ArrayList<Double> weightArray = new ArrayList<>();
@@ -22,6 +23,7 @@ public class FileIO {
     public ArrayList<Double> readFile(String inputName, Context context) throws IOException {
         fileName = inputName;
         {
+
             try {
                 ins = context.openFileInput(fileName + ".csv");
                 csvReader = new BufferedReader(new InputStreamReader(ins));
@@ -43,13 +45,15 @@ public class FileIO {
     public void writeFile(String inputName, ArrayList<Double> inputArray, Context context) throws IOException {
         fileName = inputName;
         String writeRow;
+        //open file
         {
             try {
                 csvWriter = new OutputStreamWriter(context.openFileOutput(fileName + ".csv", Context.MODE_PRIVATE));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } //open file
+        }
+        /*actual writing of file*/
         csvWriter.write("Irrelevant,weightDouble,Irrelevant\n"); //header line
         for (double input : inputArray){
             writeRow = "0," + input + ",3\n";
