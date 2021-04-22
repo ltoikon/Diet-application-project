@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">Harkka-login</string>
-    <string name="username">Username</string>
+    <!-- fragment_login.xml -->
+    <string name="app_name">Course Project</string>
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign Up</string>
     <string name="show">Show</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sign_up2">Sign up</string>
+
+    <!-- fragment_sign_up.xml -->
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="dd_mm_yyyy">dd.mm.yyyy</string>
+    <string name="home_town">Home town</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="e_mail">E-mail</string>
 </resources>

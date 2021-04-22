@@ -7,30 +7,105 @@
     tools:context=".SignUp">
 
     <EditText
-        android:id="@+id/inputUsernameSignup"
+        android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="350dp"
+        android:layout_marginBottom="500dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/emailError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+        app:layout_constraintStart_toStartOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+
+    <TextView
+        android:id="@+id/firstNameError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputFirstNameSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputFirstNameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/inputFirstNameSignup" />
+
+    <TextView
+        android:id="@+id/lastNameError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputLastNameSignup"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="@+id/inputLastNameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/inputLastNameSignup" />
+
+    <TextView
+        android:id="@+id/birthDateError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/editTextBirthDate"
+        app:layout_constraintStart_toStartOf="@+id/editTextBirthDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBirthDate" />
+
+    <TextView
+        android:id="@+id/homeTownError"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputHomeTownSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputHomeTownSignup"
+        app:layout_constraintTop_toBottomOf="@+id/inputHomeTownSignup" />
+
     <EditText
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputFirstNameSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/e_mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/inputUsernameSignup"
-        app:layout_constraintStart_toStartOf="@+id/inputUsernameSignup"
-        app:layout_constraintTop_toBottomOf="@+id/usernameErrorSignup" />
+        android:hint="@string/firstName"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+        app:layout_constraintStart_toStartOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/emailError" />
+
+    <EditText
+        android:id="@+id/inputLastNameSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/lastName"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/inputFirstNameSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputFirstNameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameError" />
+
+    <EditText
+        android:id="@+id/inputHomeTownSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/home_town"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextBirthDate"
+        app:layout_constraintStart_toStartOf="@+id/editTextBirthDate"
+        app:layout_constraintTop_toBottomOf="@+id/birthDateError" />
 
     <EditText
         android:id="@+id/inputPasswordSignup"
@@ -40,9 +115,10 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-        app:layout_constraintStart_toStartOf="@+id/inputEmail"
-        app:layout_constraintTop_toBottomOf="@+id/emailError" />
+        app:layout_constraintEnd_toEndOf="@+id/inputHomeTownSignup"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputHomeTownSignup"
+        app:layout_constraintTop_toBottomOf="@+id/homeTownError" />
 
     <EditText
         android:id="@+id/confirmPassword"
@@ -60,7 +136,7 @@
         android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up2"
+        android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
         app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordError" />
@@ -94,26 +170,6 @@
         app:layout_constraintTop_toTopOf="@+id/confirmPassword" />
 
     <TextView
-        android:id="@+id/usernameErrorSignup"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="#FF0000"
-        app:layout_constraintEnd_toEndOf="@+id/inputUsernameSignup"
-        app:layout_constraintStart_toStartOf="@+id/inputUsernameSignup"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsernameSignup" />
-
-    <TextView
-        android:id="@+id/emailError"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="#FF0000"
-        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-        app:layout_constraintStart_toStartOf="@+id/inputEmail"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
-
-    <TextView
         android:id="@+id/passwordErrorSignup"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -141,5 +197,17 @@
         app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
         app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+
+    <EditText
+        android:id="@+id/editTextBirthDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/dd_mm_yyyy"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/inputLastNameSignup"
+        app:layout_constraintStart_toStartOf="@+id/inputLastNameSignup"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameError"
+        android:autofillHints="" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

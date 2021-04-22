@@ -22,16 +22,18 @@ import java.util.regex.Pattern;
 public class SignUp extends Fragment {
 
     static SignUp signUp = new SignUp();
-    private EditText editTextUsername, editTextEmail, editTextPassword, editTextConfirmPassword;
-    private TextView usernameError, emailError, passwordError, confirmPasswordError, passwordInfo;
+    private EditText editTextEmail, editTextFirstName, editTextLastName, editTextBirthDate,
+            editTextHomeTown, editTextPassword, editTextConfirmPassword;
+    private TextView emailError, firstNameError, lastNameError, birthDateError, homeTownError,
+            passwordError, confirmPasswordError, passwordInfo;
     private Button bSignUp, bShow, bShowConfirm;
     private boolean showing = false, showingConfirm = false;
 
     private OnFragmentInteractionListener mListener;
 
-    private final String usernameErrorMessage1 = "The username is already being used. Choose a different username.";
-    private final String usernameErrorMessage2 = "The username is too short. Please choose a username that is at least 5 characters.";
-    private final String emailErrorMessage = "Incorrect E-mail.";
+    private final String emailErrorMessage1 = "Incorrect E-mail.";
+    private final String emailErrorMessage2 = "This E-mail address is already being used. Choose a different E-mail address.";
+    private final String nameErrorMessage = "This must not be blank.";
     private final String passwordErrorMessage = "Chosen password does not meet the password requirements.";
     private final String confirmPasswordErrorMessage = "The passwords do not match.";
 
@@ -50,16 +52,23 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-        editTextUsername = view.findViewById(R.id.inputUsernameSignup);
         editTextEmail = view.findViewById(R.id.inputEmail);
+        editTextFirstName = view.findViewById(R.id.inputFirstNameSignup);
+        editTextLastName = view.findViewById(R.id.inputLastNameSignup);
+        editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
+        editTextHomeTown = view.findViewById(R.id.inputHomeTownSignup);
         editTextPassword = view.findViewById(R.id.inputPasswordSignup);
         editTextConfirmPassword = view.findViewById(R.id.confirmPassword);
+
         bSignUp = view.findViewById(R.id.signUp);
         bShow = view.findViewById(R.id.showPasswordSignup);
         bShowConfirm = view.findViewById(R.id.showConfirmPasswordSignup);
 
-        usernameError = view.findViewById(R.id.usernameErrorSignup);
         emailError = view.findViewById(R.id.emailError);
+        firstNameError = view.findViewById(R.id.firstNameError);
+        lastNameError = view.findViewById(R.id.lastNameError);
+        birthDateError = view.findViewById(R.id.birthDateError);
+        homeTownError = view.findViewById(R.id.homeTownError);
         passwordError = view.findViewById(R.id.passwordErrorSignup);
         confirmPasswordError = view.findViewById(R.id.confirmPasswordError);
 
@@ -72,37 +81,74 @@ public class SignUp extends Fragment {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!validateUsername()) {
-                    if (editTextUsername.getText().toString().length() > 4) {
-                        usernameError.setText(usernameErrorMessage1);
-                    } else {
-                        usernameError.setText(usernameErrorMessage2);
-                        emailError.setText(null);
-                        passwordError.setText(null);
-                        confirmPasswordError.setText(null);
-                    }
-                } else if (!validateEmail()) {
-                    usernameError.setText(null);
-                    emailError.setText(emailErrorMessage);
+                //todo make all of the error messages to appear instead of only one (only if we don't run out of time)
+                if (!validateEmail()) {
+                    //todo !isEmailDuplicate()
+                    emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
+                    passwordError.setText(null);
+                    confirmPasswordError.setText(null);
+                } else if (!validateFirstName()) {
+                    emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
+                    passwordError.setText(null);
+                    confirmPasswordError.setText(null);
+                } else if (!validateLastName()) {
+                    emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
+                    passwordError.setText(null);
+                    confirmPasswordError.setText(null);
+                } else if (!validateBirthDate()) {
+                    emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
+                    passwordError.setText(null);
+                    confirmPasswordError.setText(null);
+                } else if (!validateHomeTown()) {
+                    emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
                     passwordError.setText(null);
                     confirmPasswordError.setText(null);
                 } else if (!validatePassword()) {
-                    usernameError.setText(null);
                     emailError.setText(null);
-                    passwordError.setText(passwordErrorMessage);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
+                    passwordError.setText(null);
                     confirmPasswordError.setText(null);
                 } else if (!confirmPassword()) {
-                    usernameError.setText(null);
                     emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
                     passwordError.setText(null);
-                    confirmPasswordError.setText(confirmPasswordErrorMessage);
+                    confirmPasswordError.setText(null);
                 } else {
-                    usernameError.setText(null);
                     emailError.setText(null);
+                    firstNameError.setText(null);
+                    lastNameError.setText(null);
+                    birthDateError.setText(null);
+                    homeTownError.setText(null);
                     passwordError.setText(null);
                     confirmPasswordError.setText(null);
 
-                    username = editTextUsername.getText().toString();
+                    username = editTextFirstName.getText().toString();
                     email = editTextEmail.getText().toString();
                     password = editTextPassword.getText().toString();
 
@@ -146,19 +192,56 @@ public class SignUp extends Fragment {
         return view;
     }
 
-    private boolean validateUsername() {
-        if (editTextUsername.getText().toString().length() > 4) {
-            return true;
-        }
-        return false;
-    }
-
     private boolean validateEmail() {
         String mail = editTextEmail.getText().toString();
         if (mail == null) {
             return false;
         } else {
             return Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        }
+    }
+
+    //todo make this method complete
+    private boolean isEmailDuplicate() {
+        //todo readfrom file
+        return false;
+    }
+
+    private boolean validateFirstName() {
+        if (editTextFirstName.getText().toString().length() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateLastName() {
+        if (editTextLastName.getText().toString().length() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    //todo Does not check if the month has as many days or if it's leap year (Do if there is enough time)
+    private boolean validateBirthDate() {
+        Pattern pattern;
+        Matcher matcher;
+        final String DATE_PATTERN = "(0?[1-9]|12][0-9]|3[01]) " + //Day of year
+                                    "[/.-] " +
+                                    "(0?[1-9]|1[012]) " + //Month
+                                    "[/.-] " +
+                                    "((19|20)\\d\\d)"; //Year
+
+        String bDate = editTextBirthDate.getText().toString();
+        pattern = Pattern.compile(DATE_PATTERN);
+        matcher = pattern.matcher(bDate);
+        return matcher.matches();
+    }
+
+    private boolean validateHomeTown() {
+        if (editTextHomeTown.getText().toString().length() > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
