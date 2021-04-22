@@ -10,7 +10,7 @@ public class PersonInfo {
     private ArrayList<Double> weightHistory = new ArrayList<>();
     private ArrayList<Double> bmiHistory = new ArrayList<>();
     private double height;
-    FileIO fetch = new FileIO();
+    FileIO fetch = FileIO.getInstance();
 
     //TODO constructor for actual use
 

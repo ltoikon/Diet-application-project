@@ -12,6 +12,9 @@ import java.util.ArrayList;
 //TODO move unnecessary stuff from method to object calling it
 //TODO read and write as objects
 public class FileIO {
+
+    static FileIO fileIO = new FileIO();
+
     private String fileName;
     ArrayList<Double> weightArray = new ArrayList<>();
     private String row;
@@ -19,6 +22,12 @@ public class FileIO {
     private InputStream ins;
     private BufferedReader csvReader;
     private OutputStreamWriter csvWriter;
+
+    private FileIO() {}
+
+    public static FileIO getInstance() {
+        return fileIO;
+    }
 
     public ArrayList<Double> readFile(String inputName, Context context) throws IOException {
         fileName = inputName;
