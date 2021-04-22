@@ -1,5 +1,6 @@
 package com.example.harkka_login;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -10,19 +11,27 @@ public class Meal {
     private String timing;
     private double co2amount; //value fetched from API
 
-    //public enum MealType {BREAKFAST, LUNCH, DINNER} // ei ehkä paras tapa
-
-
     /*constructor*/
-    public Meal () {
-        //TODO constructor for meal
+    public Meal (int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
+        date = new Date();
+        this.pork = pork;
+        this.fish = fish;
+        this.beef = beef;
+        this.dairy = dairy;
+        this.cheese = cheese;
+        this.rice = rice;
+        this.egg = egg;
+        this.winterSalad = winterSalad;
+        this.timing = timing;
+        co2amount = fetchClimateDiet();
     }
 
     /*co2 amount using food ingredient info*/
-    public void fetchClimateDiet (){
+    public double fetchClimateDiet (){
+        double result;
         ClimateDietAPI climateDiet = new ClimateDietAPI(); //alternative would be giving here food values
-        co2amount = climateDiet.calculate(pork, fish, beef, dairy, cheese, rice, egg, winterSalad);
-        //TODO use of API, own class for it?
+        result = climateDiet.calculate(pork, fish, beef, dairy, cheese, rice, egg, winterSalad);
+        return result;
     }
 
     /* Do we use Meal class to do entries too or just for creating meal object*/
