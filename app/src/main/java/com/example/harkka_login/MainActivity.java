@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.window, login);
         transaction.commit();
+        /*Needed for internet*/
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
 

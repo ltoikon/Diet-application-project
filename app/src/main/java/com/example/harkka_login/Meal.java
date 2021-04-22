@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Meal {
     private Date date;
-    private int  pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
+    private int pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
     private String timing;
     private double co2amount; //value fetched from API
 
@@ -20,6 +20,8 @@ public class Meal {
 
     /*co2 amount using food ingredient info*/
     public void fetchClimateDiet (){
+        ClimateDietAPI climateDiet = new ClimateDietAPI(); //alternative would be giving here food values
+        co2amount = climateDiet.calculate(pork, fish, beef, dairy, cheese, rice, egg, winterSalad);
         //TODO use of API, own class for it?
     }
 
