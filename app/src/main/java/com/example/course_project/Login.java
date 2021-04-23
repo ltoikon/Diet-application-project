@@ -122,10 +122,15 @@ public class Login extends Fragment {
                 userList = fileIO.getUsers(getActivity().getApplicationContext());
                 int i = 0;
                 System.out.println("####### userList sisältö: #######");
+                System.out.println("Koko: " + userList.size());
                 for (User user : userList) {
-                    System.out.println("### Listan " + i+1 + ". jäsen\nEmail: " + user.getEmail() +
-                            "\nNimi: " + user.getFirstName() + " " + user.getLastName() +
-                            "\nSyntymäpäivä: " + user.getBirthDate() + "\nAsuinpaikka: " + user.getHomeTown() + "\n###");
+                    System.out.println("###");
+                    System.out.println("Listan " + i+1 + ". jäsen");
+                    System.out.println("Email: " + user.getEmail());
+                    System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
+                    System.out.println("Syntymäpäivä: " + user.getBirthDate());
+                    System.out.println("Asuinpaikka: " + user.getHomeTown());
+                    System.out.println("###");
                 }
                 System.out.println("#################################");
             }

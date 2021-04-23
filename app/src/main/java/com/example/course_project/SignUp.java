@@ -175,11 +175,16 @@ public class SignUp extends Fragment {
                     editTextPassword.setText(null);
                     editTextConfirmPassword.setText(null);
 
-                    User user = new User(email, password, firstName, lastName, birthDate, homeTown);
-                    FileIO fileIO = FileIO.getInstance();
-                    fileIO.registerUser(user, Objects.requireNonNull(getContext()));
+                    userList.clear();
+                    userList = fileIO.getUsers(getActivity().getApplicationContext());
 
-                    Toast.makeText(getActivity(), "Rekisteröityminen onnistui!", Toast.LENGTH_SHORT).show();
+                    User user = new User(email, password, firstName, lastName, birthDate, homeTown);
+                    userList.add(user);
+
+                    FileIO fileIO = FileIO.getInstance();
+                    fileIO.registerUser(userList, getActivity().getApplicationContext());
+                    System.out.println("Rekisteröityminen onnistui!");
+
                     mListener.changeFragment(0); // 0 == Login fragment
 
                     //todo Vahvistusruutu käyttäjän luomisesta + tallennus tiedostoon (oliona)

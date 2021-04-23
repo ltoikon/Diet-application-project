@@ -83,53 +83,64 @@ public class FileIO {
         System.out.println("Writing done");
     }
 
-    public void registerUser(User user, Context context) {
+    // Writes User to a file
+    public void registerUser(ArrayList<User> userList, Context context) {
         try {
             FileOutputStream fos = context.openFileOutput("userList.ser", Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(user);
+            oos.writeObject(userList);
             oos.close();
             fos.close();
-            System.out.println("User added to userList.ser");
+            //System.out.println(i + " users added to userList.ser");
+
         } catch (IOException e) {
             System.out.println("###################");
             e.printStackTrace();
             System.out.println("###################");
         }
+        /*int i = 0;
+        System.out.println("####### userList sisältö: #######");
+        System.out.println("Koko: " + userList.size());
+        for (User user : userList) {
+            i++;
+            System.out.println("###");
+            System.out.println("Listan " + i + ". jäsen");
+            System.out.println("Email: " + user.getEmail());
+            System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
+            System.out.println("Syntymäpäivä: " + user.getBirthDate());
+            System.out.println("Asuinpaikka: " + user.getHomeTown());
+            System.out.println("###");
+        }
+        System.out.println("#################################");
+        userList = getUsers(context); // Testataan mitä getUser tulostaa konsoliin*/
     }
 
-    // Reads User objects from a file and returns list of them as an ArrayList
+    // todo Reads User objects from a file and returns list of them as an ArrayList
     public ArrayList<User> getUsers(Context context) {
         User user = null;
         ArrayList<User> userList = new ArrayList<>();
-        boolean cont = true;
-        int i = 0;
 
+        System.out.println("#################### getUsers ####################");
         try {
             FileInputStream fis = context.openFileInput("userList.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            userList = (ArrayList<User>) ois.readObject();
 
-            while (cont) {
-                try (ObjectInputStream ois = new ObjectInputStream(fis)) {
-                    user = (User) ois.readObject();
-                    if (user != null) {
-                        userList.add(user);
-                    } else {
-                        cont = false;
-                    }
-                    ois.close();
-                    fis.close();
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                } finally {
-                    cont = false;
-                }
-                i++;
+            for (int i = 0; i < userList.size(); i++) {
+                user = userList.get(i);
+
+                System.out.println("###");
+                System.out.println("Listan " + i + ". jäsen");
+                System.out.println("Email: " + user.getEmail());
+                System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
+                System.out.println("Syntymäpäivä: " + user.getBirthDate());
+                System.out.println("Asuinpaikka: " + user.getHomeTown());
+                System.out.println("###");
             }
-        } catch (FileNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        } finally {
-            System.out.println("#### Kierroksia: " + i);
         }
+        System.out.println("########################################");
         return userList;
     }
 }
