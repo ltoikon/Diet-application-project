@@ -1,6 +1,8 @@
 package com.example.course_project;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String email, password, firstName, lastName, homeTown, birthDate;
 
     public User(String email, String password, String firstName, String lastName, String birthDate, String hometown) {

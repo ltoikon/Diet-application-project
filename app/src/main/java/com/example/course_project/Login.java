@@ -14,13 +14,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Login extends Fragment {
 
     static Login login = new Login();
     private EditText editTextUsername, editTextPassword;
     private TextView usernameError, passwordError;
     private Button bLogin, bSignUp, bShow;
+    private Button printUserList;
     private boolean showing = false;
+
+    FileIO fileIO = FileIO.getInstance();
 
     private OnFragmentInteractionListener mListener;
 
@@ -29,6 +34,8 @@ public class Login extends Fragment {
 
     //todo Tunnuksen hakeminen tiedostosta tämän sijaan
     private String username = "Username", password = "Password";
+
+    ArrayList<User> userList = new ArrayList<>();
 
     private Login() {}
 
@@ -44,9 +51,12 @@ public class Login extends Fragment {
         editTextPassword = view.findViewById(R.id.inputPassword);
         usernameError = view.findViewById(R.id.emailError);
         passwordError = view.findViewById(R.id.passwordError);
+
         bLogin = view.findViewById(R.id.buttonLogIn);
         bSignUp = view.findViewById(R.id.buttonSignUp);
         bShow = view.findViewById(R.id.buttonShowPassword);
+
+        printUserList = view.findViewById(R.id.printUserList);
 
         editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
@@ -101,6 +111,21 @@ public class Login extends Fragment {
             @Override
             public void onClick(View v) {
                 mListener.changeFragment(1); // 1 == SignUp fragment
+            }
+        });
+
+        printUserList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userList = fileIO.getUsers(getActivity().getApplicationContext());
+                int i = 0;
+                System.out.println("####### userList sisältö: #######");
+                for (User user : userList) {
+                    System.out.println("### Listan " + i+1 + ". jäsen\nEmail: " + user.getEmail() +
+                            "\nNimi: " + user.getFirstName() + " " + user.getLastName() +
+                            "\nSyntymäpäivä: " + user.getBirthDate() + "\nAsuinpaikka: " + user.getHomeTown() + "\n###");
+                }
+                System.out.println("#################################");
             }
         });
 

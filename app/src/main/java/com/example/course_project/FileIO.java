@@ -3,10 +3,15 @@ package com.example.course_project;
 import android.content.Context;
 
 import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 //TODO move unnecessary stuff from method to object calling it
@@ -76,5 +81,55 @@ public class FileIO {
     public void appendFile(String inputName, ArrayList<Double> inputArray){
         fileName = inputName;
         System.out.println("Writing done");
+    }
+
+    public void registerUser(User user, Context context) {
+        try {
+            FileOutputStream fos = context.openFileOutput("userList.ser", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(user);
+            oos.close();
+            fos.close();
+            System.out.println("User added to userList.ser");
+        } catch (IOException e) {
+            System.out.println("###################");
+            e.printStackTrace();
+            System.out.println("###################");
+        }
+    }
+
+    // Reads User objects from a file and returns list of them as an ArrayList
+    public ArrayList<User> getUsers(Context context) {
+        User user = null;
+        ArrayList<User> userList = new ArrayList<>();
+        boolean cont = true;
+        int i = 0;
+
+        try {
+            FileInputStream fis = context.openFileInput("userList.ser");
+
+            while (cont) {
+                try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+                    user = (User) ois.readObject();
+                    if (user != null) {
+                        userList.add(user);
+                    } else {
+                        cont = false;
+                    }
+                    ois.close();
+                    fis.close();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    cont = false;
+                }
+                i++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("#### Kierroksia: " + i);
+        }
+        return userList;
     }
 }
