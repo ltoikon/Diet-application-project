@@ -1,6 +1,4 @@
-package com.example.harkka_login;
-
-import java.util.Date;
+package com.example.course_project;
 
 public class User {
     private String email, password, firstName, lastName, homeTown, birthDate;

@@ -1,4 +1,4 @@
-package com.example.harkka_login;
+package com.example.course_project;
 
 import org.json.JSONException;
 import org.json.JSONObject;

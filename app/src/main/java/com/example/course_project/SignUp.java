@@ -1,4 +1,4 @@
-package com.example.harkka_login;
+package com.example.course_project;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ public class SignUp extends Fragment {
             editTextHomeTown, editTextPassword, editTextConfirmPassword;
     private TextView emailError, firstNameError, lastNameError, birthDateError, homeTownError,
             passwordError, confirmPasswordError, passwordInfo;
-    private Button bSignUp, bShow, bShowConfirm;
+    private Button bSignUp, bCancel, bShow, bShowConfirm;
     private boolean showing = false, showingConfirm = false;
 
     private OnFragmentInteractionListener mListener;
@@ -52,7 +52,7 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-        editTextEmail = view.findViewById(R.id.inputEmail);
+        editTextEmail = view.findViewById(R.id.inputEmailSignUp);
         editTextFirstName = view.findViewById(R.id.inputFirstNameSignup);
         editTextLastName = view.findViewById(R.id.inputLastNameSignup);
         editTextBirthDate = view.findViewById(R.id.editTextBirthDate);
@@ -61,10 +61,11 @@ public class SignUp extends Fragment {
         editTextConfirmPassword = view.findViewById(R.id.confirmPassword);
 
         bSignUp = view.findViewById(R.id.signUp);
+        bCancel = view.findViewById(R.id.cancel);
         bShow = view.findViewById(R.id.showPasswordSignup);
         bShowConfirm = view.findViewById(R.id.showConfirmPasswordSignup);
 
-        emailError = view.findViewById(R.id.emailError);
+        emailError = view.findViewById(R.id.emailErrorSignUp);
         firstNameError = view.findViewById(R.id.firstNameError);
         lastNameError = view.findViewById(R.id.lastNameError);
         birthDateError = view.findViewById(R.id.birthDateError);
@@ -157,6 +158,13 @@ public class SignUp extends Fragment {
 
                     //todo Vahvistusruutu käyttäjän luomisesta + tallennus tiedostoon (oliona)
                 }
+            }
+        });
+
+        bCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.changeFragment(0); // 0 == Login fragment
             }
         });
 

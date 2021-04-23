@@ -7,7 +7,7 @@
     tools:context=".SignUp">
 
     <EditText
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputEmailSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
@@ -21,14 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emailError"
+        android:id="@+id/emailErrorSignUp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="#FF0000"
-        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-        app:layout_constraintStart_toStartOf="@+id/inputEmail"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/inputEmailSignUp"
+        app:layout_constraintStart_toStartOf="@+id/inputEmailSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailSignUp" />
 
     <TextView
         android:id="@+id/firstNameError"
@@ -79,9 +79,9 @@
         android:ems="10"
         android:hint="@string/firstName"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-        app:layout_constraintStart_toStartOf="@+id/inputEmail"
-        app:layout_constraintTop_toBottomOf="@+id/emailError" />
+        app:layout_constraintEnd_toEndOf="@+id/inputEmailSignUp"
+        app:layout_constraintStart_toStartOf="@+id/inputEmailSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/emailErrorSignUp" />
 
     <EditText
         android:id="@+id/inputLastNameSignup"
@@ -136,10 +136,22 @@
         android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="10dp"
         android:text="@string/sign_up"
-        app:layout_constraintEnd_toEndOf="@+id/inputPasswordSignup"
-        app:layout_constraintStart_toStartOf="@+id/inputPasswordSignup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordError" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/signUp"
+        app:layout_constraintEnd_toStartOf="@+id/signUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/signUp" />
 
     <Button
         android:id="@+id/showPasswordSignup"

@@ -13,4 +13,5 @@
     <string name="home_town">Home town</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="e_mail">E-mail</string>
+    <string name="cancel">Cancel</string>
 </resources>

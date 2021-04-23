@@ -1,4 +1,4 @@
-package com.example.harkka_login;
+package com.example.course_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
 
     @Override
     public void changeFragment(int id) {
-        if (id == 0) {
+        if (id == 0) {  // Login fragment
             System.out.println("Vaihtuu login-fragmenttiin");
             Fragment login = Login.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, login).commit();
-        } else if (id == 1) {
+        } else if (id == 1) {  // Sign Up fragment
             System.out.println("Vaihtuu signup-fragmenttiin");
             Fragment signUp = SignUp.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

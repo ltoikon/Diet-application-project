@@ -1,4 +1,4 @@
-package com.example.harkka_login;
+package com.example.course_project;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -40,9 +40,9 @@ public class Login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        editTextUsername = view.findViewById(R.id.inputUsername);
+        editTextUsername = view.findViewById(R.id.inputEmail);
         editTextPassword = view.findViewById(R.id.inputPassword);
-        usernameError = view.findViewById(R.id.usernameError);
+        usernameError = view.findViewById(R.id.emailError);
         passwordError = view.findViewById(R.id.passwordError);
         bLogin = view.findViewById(R.id.buttonLogIn);
         bSignUp = view.findViewById(R.id.buttonSignUp);
@@ -62,7 +62,7 @@ public class Login extends Fragment {
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
 
-                    //todo vaihto sovellusnäkymään
+                    //todo switch to menu fragment
 
                 } else if (!editTextUsername.getText().toString().equals(username)) {
                     usernameError.setText(usernameErrorMessage);
