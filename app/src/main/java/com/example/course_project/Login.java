@@ -71,7 +71,9 @@ public class Login extends Fragment {
                     System.out.println("Käyttäjänimi: " + editTextUsername.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
-
+                    //TODO remove this test part
+                    //testing mealentry fragment
+                    mListener.changeFragment(2); // 2 == MealEntry fragment
                     //todo switch to menu fragment
 
                 } else if (!editTextUsername.getText().toString().equals(username)) {

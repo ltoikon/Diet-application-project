@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/inputTiming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="@string/timing"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/inputPork"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/inputEggs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="140dp"
+        android:ems="10"
+        android:hint="@string/pieces"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/inputRice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputWinterSalad"
+        app:layout_constraintStart_toStartOf="@+id/inputWinterSalad" />
+
+    <EditText
+        android:id="@+id/inputWinterSalad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputEggs"
+        app:layout_constraintStart_toStartOf="@+id/inputEggs" />
+
+    <EditText
+        android:id="@+id/inputCheese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputRice"
+        app:layout_constraintStart_toStartOf="@+id/inputRice" />
+
+    <EditText
+        android:id="@+id/inputDairy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputCheese"
+        app:layout_constraintStart_toStartOf="@+id/inputCheese" />
+
+    <EditText
+        android:id="@+id/inputFish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputDairy"
+        app:layout_constraintStart_toStartOf="@+id/inputDairy" />
+
+    <EditText
+        android:id="@+id/inputBeef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputFish"
+        app:layout_constraintStart_toStartOf="@+id/inputFish" />
+
+    <EditText
+        android:id="@+id/inputPork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="@string/grams"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/inputBeef"
+        app:layout_constraintStart_toStartOf="@+id/inputBeef" />
+
+    <TextView
+        android:id="@+id/textPork"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/pork"
+        app:layout_constraintBottom_toBottomOf="@+id/inputPork"
+        app:layout_constraintStart_toStartOf="@+id/textBeef" />
+
+    <TextView
+        android:id="@+id/textEggs"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/eggs"
+        app:layout_constraintBottom_toBottomOf="@+id/inputEggs"
+        app:layout_constraintEnd_toStartOf="@+id/inputEggs"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textWinterSalad"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/winterSalad"
+        app:layout_constraintBottom_toBottomOf="@+id/inputWinterSalad"
+        app:layout_constraintStart_toStartOf="@+id/textEggs" />
+
+    <TextView
+        android:id="@+id/textRice"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/rice"
+        app:layout_constraintBottom_toBottomOf="@+id/inputRice"
+        app:layout_constraintStart_toStartOf="@+id/textWinterSalad" />
+
+    <TextView
+        android:id="@+id/textCheese"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/cheese"
+        app:layout_constraintBottom_toBottomOf="@+id/inputCheese"
+        app:layout_constraintStart_toStartOf="@+id/textRice" />
+
+    <TextView
+        android:id="@+id/textDairy"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/dairy"
+        app:layout_constraintBottom_toBottomOf="@+id/inputDairy"
+        app:layout_constraintStart_toStartOf="@+id/textCheese" />
+
+    <TextView
+        android:id="@+id/textFish"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/fish"
+        app:layout_constraintBottom_toBottomOf="@+id/inputFish"
+        app:layout_constraintStart_toStartOf="@+id/textDairy" />
+
+    <TextView
+        android:id="@+id/textBeef"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:text="@string/beef"
+        app:layout_constraintBottom_toBottomOf="@+id/inputBeef"
+        app:layout_constraintStart_toStartOf="@+id/textFish" />
+</androidx.constraintlayout.widget.ConstraintLayout>

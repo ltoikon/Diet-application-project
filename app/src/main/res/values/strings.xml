@@ -14,4 +14,22 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="e_mail">E-mail</string>
     <string name="cancel">Cancel</string>
+
+    <!-- fragment_meal_entry.xml -->
+    <string name="timing">Timing</string>
+    <string name="grams">Grams</string>
+    <string name="pieces">Pcs</string>
+    <string name="pork">Pork and poultry</string>
+    <string name="beef">Beef</string>
+    <string name="fish">Fish</string>
+    <string name="dairy">Dairy</string>
+    <string name="cheese">Cheese</string>
+    <string name="eggs">Eggs</string>
+    <string name="rice">Rice</string>
+    <string name="winterSalad">Vegetables (Green house)</string>
+
+
+
+
+
 </resources>

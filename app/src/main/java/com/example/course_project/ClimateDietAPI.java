@@ -17,7 +17,13 @@ import javax.net.ssl.HttpsURLConnection;
 /*using JSON on API request */
 public class ClimateDietAPI {
     private double co2;
-    private final int avePork = 1000, aveBeef = 400, aveFish = 600, aveCheese = 300, aveDairy = 3800, aveRice = 90, aveWinterSalad = 1400; // finn average grams per week,
+    private final int avePork = 1000;
+    private final int aveBeef = 400;
+    private final int aveFish = 600;
+    private final int aveCheese = 300;
+    private final int aveDairy = 3800;
+    private final int aveRice = 90;
+    private final int aveWinterSalad = 1400; // finn average grams per week,
     public ClimateDietAPI(){
 
     }
@@ -40,7 +46,7 @@ public class ClimateDietAPI {
     }
 
     public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
-        pork = (pork/avePork)*100;
+        pork = (pork/ avePork)*100;
         fish = (fish/aveFish)*100;
         beef = (beef/aveBeef)*100;
         dairy = (dairy/aveDairy)*100;

@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Fragment signUp = SignUp.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, signUp).commit();
+        } else if (id == 2) {  // Sign Up fragment
+            System.out.println("Vaihtuu mealEntry-fragmenttiin");
+            Fragment mealEntry = MealEntry.getInstance();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.window, mealEntry).commit();
         }
     }
 }
