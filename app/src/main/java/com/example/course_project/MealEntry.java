@@ -73,6 +73,15 @@ public class MealEntry extends Fragment {
                entryEgg = editTextEgg.getText().toString();
                entryWinterSalad = editTextWinterSalad.getText().toString();
 
+               if (entryPork.length()==0){entryPork = "0";}
+               if (entryBeef.length()==0){entryBeef = "0";}
+               if (entryFish.length()==0){entryFish = "0";}
+               if (entryDairy.length()==0){entryDairy = "0";}
+               if (entryCheese.length()==0){entryCheese = "0";}
+               if (entryRice.length()==0){entryRice = "0";}
+               if (entryEgg.length()==0){entryEgg = "0";}
+               if (entryWinterSalad.length()==0){entryWinterSalad = "0";}
+
                intPork =  Integer.parseInt(entryPork);
                intBeef = Integer.parseInt(entryBeef);
                intFish = Integer.parseInt(entryFish);
