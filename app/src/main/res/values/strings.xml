@@ -28,8 +28,7 @@
     <string name="rice">Rice</string>
     <string name="winterSalad">Vegetables (Green house)</string>
 
-
-
-
-
+    <!-- Placeholder class -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

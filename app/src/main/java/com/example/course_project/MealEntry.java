@@ -24,9 +24,6 @@ public class MealEntry extends Fragment {
 
     private Button bSubmit;
 
-
-
-    private OnFragmentInteractionListener mListener;
     FileIO fileIO = FileIO.getInstance();
     private MealEntry() {}
 
@@ -66,25 +63,5 @@ public class MealEntry extends Fragment {
         bSubmit = view.findViewById(R.id.buttonSubmit);
 
         return view;
-    }
-
-
-
-    // NOT NEEDED PERHAPS???***********************
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 }

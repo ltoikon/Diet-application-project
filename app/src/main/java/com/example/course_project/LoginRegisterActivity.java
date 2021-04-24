@@ -4,15 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+public class LoginRegisterActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_prelogin);
         Fragment login = Login.getInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.window, login);
@@ -34,11 +35,18 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Fragment signUp = SignUp.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, signUp).commit();
-        } else if (id == 2) {  // mealEntry fragment
+        }
+        // This is moved to Placeholder.java class
+        /*else if (id == 2) {  // mealEntry fragment
             System.out.println("Vaihtuu mealEntry-fragmenttiin");
             Fragment mealEntry = MealEntry.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, mealEntry).commit();
-        }
+        }*/
+    }
+
+    public void changeActivity() {
+        Intent intent = new Intent(LoginRegisterActivity.this, Placeholder.class);
+        startActivity(intent);
     }
 }

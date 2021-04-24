@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ public class Login extends Fragment {
     private EditText editTextEmail, editTextPassword;
     private TextView emailError, passwordError;
     private Button bLogin, bSignUp, bShow;
-    private Button printUserList;
+    private Button printUserList; //todo this is temporary
     private boolean showing = false;
 
     FileIO fileIO = FileIO.getInstance();
@@ -61,7 +62,8 @@ public class Login extends Fragment {
         bSignUp = view.findViewById(R.id.buttonSignUp);
         bShow = view.findViewById(R.id.buttonShowPassword);
 
-        printUserList = view.findViewById(R.id.printUserList);
+
+        printUserList = view.findViewById(R.id.printUserList); //todo this is temporary
 
         editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
@@ -89,10 +91,13 @@ public class Login extends Fragment {
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
+                    changeActivity();
+                    /*
                     //TODO remove this test part
                     //testing mealentry fragment
                     mListener.changeFragment(2); // 2 == MealEntry fragment
                     //todo switch to menu fragment
+                    */
                 }
                 // This is only for testing todo remove this
                 else if ((editTextEmail.getText().toString().equals(email)) &&
@@ -103,10 +108,13 @@ public class Login extends Fragment {
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
+                    changeActivity();
+                    /*
                     //TODO remove this test part
                     //testing mealentry fragment
                     mListener.changeFragment(2); // 2 == MealEntry fragment
                     //todo switch to menu fragment
+                    */
                 } else {
                     passwordError.setText(passwordErrorMessage);
                     emailError.setText(null);
@@ -140,6 +148,7 @@ public class Login extends Fragment {
             }
         });
 
+        //todo this is temporary
         printUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,5 +183,10 @@ public class Login extends Fragment {
             }
         }
         return -1;
+    }
+
+    public void changeActivity() {
+        Intent intent = new Intent(getActivity(), Placeholder.class);
+        startActivity(intent);
     }
 }
