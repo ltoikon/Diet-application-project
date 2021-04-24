@@ -19,10 +19,16 @@ public class MealEntry extends Fragment {
 
     private EditText editTextPork, editTextBeef, editTextFish, editTextDairy, editTextCheese,
             editTextRice, editTextEgg, editTextWinterSalad, editTextTiming;
-    private TextView textPork, textBeef, textFish, textDairy, textCheese,
-            textRice, textEgg, textWinterSalad;;
+    /*private TextView textPork, textBeef, textFish, textDairy, textCheese,
+            textRice, textEgg, textWinterSalad;*/
 
     private Button bSubmit;
+
+    private String entryPork, entryBeef, entryFish, entryDairy, entryCheese,
+            entryRice, entryEgg, entryWinterSalad, entryTiming;
+
+    private int intPork, intBeef, intFish, intDairy, intCheese,
+            intRice, intEgg, intWinterSalad;
 
 
 
@@ -34,7 +40,7 @@ public class MealEntry extends Fragment {
         return mealEntry;
     }
 
-    private String timing = "Timing";
+    //private String timing = "Timing";
 
     @Nullable
     @Override
@@ -42,33 +48,48 @@ public class MealEntry extends Fragment {
         View view = inflater.inflate(R.layout.fragment_meal_entry, container, false);
 
         editTextTiming = view.findViewById(R.id.inputTiming);
-
-        textPork = view.findViewById(R.id.textPork);
-        textBeef = view.findViewById(R.id.textBeef);
-        textFish = view.findViewById(R.id.textFish);
-        textDairy = view.findViewById(R.id.textDairy);
-        textCheese = view.findViewById(R.id.textCheese);
-        textRice = view.findViewById(R.id.textRice);
-        textEgg = view.findViewById(R.id.textEggs);
-        textWinterSalad = view.findViewById(R.id.textWinterSalad);
-/*
-        textPork.setText("Pork and poultry");
-        textBeef.setText("Beef");
-        textFish.setText("Fish");
-        textDairy.setText("Dairy");
-        textCheese.setText("Cheese");
-        textRice.setText("Rice");
-        textEgg.setText("Eggs");
-        textWinterSalad.setText("Green house grown veggies");
-*/
-
+        editTextPork = view.findViewById(R.id.inputPork);
+        editTextBeef = view.findViewById(R.id.inputBeef);
+        editTextFish = view.findViewById(R.id.inputFish);
+        editTextDairy = view.findViewById(R.id.inputDairy);
+        editTextCheese = view.findViewById(R.id.inputCheese);
+        editTextRice = view.findViewById(R.id.inputRice);
+        editTextEgg = view.findViewById(R.id.inputEggs);
+        editTextWinterSalad = view.findViewById(R.id.inputWinterSalad);
 
         bSubmit = view.findViewById(R.id.buttonSubmit);
 
+       bSubmit.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               entryTiming = editTextTiming.getText().toString();
+               entryPork = editTextPork.getText().toString();
+               entryBeef = editTextBeef.getText().toString();
+               entryFish = editTextFish.getText().toString();
+               entryDairy = editTextDairy.getText().toString();
+               entryCheese = editTextCheese.getText().toString();
+               entryRice = editTextRice.getText().toString();
+               entryEgg = editTextEgg.getText().toString();
+               entryWinterSalad = editTextWinterSalad.getText().toString();
+
+               intPork =  Integer.parseInt(entryPork);
+               intBeef = Integer.parseInt(entryBeef);
+               intFish = Integer.parseInt(entryFish);
+               intDairy = Integer.parseInt(entryDairy);
+               intCheese = Integer.parseInt(entryCheese);
+               intRice = Integer.parseInt(entryRice);
+               intEgg = Integer.parseInt(entryEgg);
+               intWinterSalad = Integer.parseInt(entryWinterSalad);
+
+               Meal meal = new Meal(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad, entryTiming);
+               mListener.changeFragment(0); // 0 == Login fragment
+           }
+       });
+
+
         return view;
     }
-
-
 
     // NOT NEEDED PERHAPS???***********************
     @Override
