@@ -22,17 +22,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         StrictMode.setThreadPolicy(policy);
     }
 
-
-    /*@Override
-    public void onStart() {
-        super.onStart();
-
-        if ((getSupportFragmentManager().findFragmentById(R.id.window)) == login) {
-            SignUp signUp = (SignUp) getIntent().getExtras().get("activity");
-            getSupportFragmentManager().beginTransaction().replace(R.id.window, signUp).commit();
-        }
-    }*/
-
     @Override
     public void changeFragment(int id) {
         if (id == 0) {  // Login fragment
@@ -40,12 +29,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             Fragment login = Login.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, login).commit();
-        } else if (id == 1) {  // Sign Up fragment
+        } else if (id == 1) {  // SignUp fragment
             System.out.println("Vaihtuu signup-fragmenttiin");
             Fragment signUp = SignUp.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.window, signUp).commit();
-        } else if (id == 2) {  // Sign Up fragment
+        } else if (id == 2) {  // mealEntry fragment
             System.out.println("Vaihtuu mealEntry-fragmenttiin");
             Fragment mealEntry = MealEntry.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

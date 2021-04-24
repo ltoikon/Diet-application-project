@@ -12,7 +12,7 @@
     <string name="dd_mm_yyyy">dd.mm.yyyy</string>
     <string name="home_town">Home town</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="e_mail">E-mail</string>
+    <string name="email">Email</string>
     <string name="cancel">Cancel</string>
 
     <!-- fragment_meal_entry.xml -->

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -19,8 +20,8 @@ import java.util.ArrayList;
 public class Login extends Fragment {
 
     static Login login = new Login();
-    private EditText editTextUsername, editTextPassword;
-    private TextView usernameError, passwordError;
+    private EditText editTextEmail, editTextPassword;
+    private TextView emailError, passwordError;
     private Button bLogin, bSignUp, bShow;
     private Button printUserList;
     private boolean showing = false;
@@ -29,13 +30,15 @@ public class Login extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String usernameErrorMessage = "The username is not registered in our system.";
+    private final String emailErrorMessage = "The email is not registered in our system.";
     private final String passwordErrorMessage = "Incorrect password.";
 
-    //todo Tunnuksen hakeminen tiedostosta tämän sijaan
-    private String username = "Username", password = "Password";
+    // For testing only
+    private final String email = "Email", password = "Password";
 
     ArrayList<User> userList = new ArrayList<>();
+
+    private int userID;
 
     private Login() {}
 
@@ -47,9 +50,11 @@ public class Login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        editTextUsername = view.findViewById(R.id.inputEmail);
+        Context context = getActivity().getApplicationContext();
+
+        editTextEmail = view.findViewById(R.id.inputEmail);
         editTextPassword = view.findViewById(R.id.inputPassword);
-        usernameError = view.findViewById(R.id.emailError);
+        emailError = view.findViewById(R.id.emailError);
         passwordError = view.findViewById(R.id.passwordError);
 
         bLogin = view.findViewById(R.id.buttonLogIn);
@@ -63,31 +68,50 @@ public class Login extends Fragment {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((editTextUsername.getText().toString().equals(username) &&
-                        (editTextPassword.getText().toString().equals(password)))) {
-                    usernameError.setText(null);
+
+                userList = fileIO.getUsers(context);
+                if (!editTextEmail.getText().toString().equals(email)) {
+                    userID = getUserID(userList, editTextEmail.getText().toString());
+                    System.out.println("########%%%########");
+                }
+
+                if (userID == -1) {
+                    emailError.setText(emailErrorMessage);
+                    passwordError.setText(null);
+                    System.out.println("Väärä käyttäjänimi:");
+                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
+                    System.out.println("Salasana: " + editTextPassword.getText().toString());
+                    Toast.makeText(getActivity(), "Tuntematon käyttäjänimi.", Toast.LENGTH_SHORT).show();
+                } else if (userList.get(userID).getPassword().equals(editTextPassword.getText().toString())) {
+                    emailError.setText(null);
                     passwordError.setText(null);
                     System.out.println("Kirjautuminen onnistui");
-                    System.out.println("Käyttäjänimi: " + editTextUsername.getText().toString());
+                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
                     //TODO remove this test part
                     //testing mealentry fragment
                     mListener.changeFragment(2); // 2 == MealEntry fragment
                     //todo switch to menu fragment
-
-                } else if (!editTextUsername.getText().toString().equals(username)) {
-                    usernameError.setText(usernameErrorMessage);
+                }
+                // This is only for testing todo remove this
+                else if ((editTextEmail.getText().toString().equals(email)) &&
+                        editTextPassword.getText().toString().equals(password)) {
+                    emailError.setText(null);
                     passwordError.setText(null);
-                    System.out.println("Väärä käyttäjänimi:");
-                    System.out.println("Käyttäjänimi: " + editTextUsername.getText().toString());
+                    System.out.println("Kirjautuminen onnistui");
+                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
-                    Toast.makeText(getActivity(), "Tuntematon käyttäjänimi.", Toast.LENGTH_SHORT).show();
-                } else if (!editTextPassword.getText().toString().equals(password)) {
+                    Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
+                    //TODO remove this test part
+                    //testing mealentry fragment
+                    mListener.changeFragment(2); // 2 == MealEntry fragment
+                    //todo switch to menu fragment
+                } else {
                     passwordError.setText(passwordErrorMessage);
-                    usernameError.setText(null);
+                    emailError.setText(null);
                     System.out.println("Väärä salasana:");
-                    System.out.println("Käyttäjänimi: " + editTextUsername.getText().toString());
+                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Väärä salasana.", Toast.LENGTH_SHORT).show();
                 }
@@ -119,20 +143,7 @@ public class Login extends Fragment {
         printUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userList = fileIO.getUsers(getActivity().getApplicationContext());
-                int i = 0;
-                System.out.println("####### userList sisältö: #######");
-                System.out.println("Koko: " + userList.size());
-                for (User user : userList) {
-                    System.out.println("###");
-                    System.out.println("Listan " + i+1 + ". jäsen");
-                    System.out.println("Email: " + user.getEmail());
-                    System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
-                    System.out.println("Syntymäpäivä: " + user.getBirthDate());
-                    System.out.println("Asuinpaikka: " + user.getHomeTown());
-                    System.out.println("###");
-                }
-                System.out.println("#################################");
+                userList = fileIO.getUsers(context);
             }
         });
 
@@ -154,5 +165,14 @@ public class Login extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private int getUserID(ArrayList<User> userList, String inputEmail) {
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getEmail().equals(inputEmail)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

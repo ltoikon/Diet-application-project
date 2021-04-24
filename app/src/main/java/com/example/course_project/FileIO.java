@@ -91,31 +91,14 @@ public class FileIO {
             oos.writeObject(userList);
             oos.close();
             fos.close();
-            //System.out.println(i + " users added to userList.ser");
-
         } catch (IOException e) {
             System.out.println("###################");
             e.printStackTrace();
             System.out.println("###################");
         }
-        /*int i = 0;
-        System.out.println("####### userList sisältö: #######");
-        System.out.println("Koko: " + userList.size());
-        for (User user : userList) {
-            i++;
-            System.out.println("###");
-            System.out.println("Listan " + i + ". jäsen");
-            System.out.println("Email: " + user.getEmail());
-            System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
-            System.out.println("Syntymäpäivä: " + user.getBirthDate());
-            System.out.println("Asuinpaikka: " + user.getHomeTown());
-            System.out.println("###");
-        }
-        System.out.println("#################################");
-        userList = getUsers(context); // Testataan mitä getUser tulostaa konsoliin*/
     }
 
-    // todo Reads User objects from a file and returns list of them as an ArrayList
+    // Reads User objects from a file and returns list of them as an ArrayList
     public ArrayList<User> getUsers(Context context) {
         User user = null;
         ArrayList<User> userList = new ArrayList<>();
@@ -126,8 +109,8 @@ public class FileIO {
             ObjectInputStream ois = new ObjectInputStream(fis);
             userList = (ArrayList<User>) ois.readObject();
 
-            for (int i = 0; i < userList.size(); i++) {
-                user = userList.get(i);
+            for (int i = 1; i < userList.size() + 1; i++) {
+                user = userList.get(i-1);
 
                 System.out.println("###");
                 System.out.println("Listan " + i + ". jäsen");
@@ -137,7 +120,8 @@ public class FileIO {
                 System.out.println("Asuinpaikka: " + user.getHomeTown());
                 System.out.println("###");
             }
-        } catch (ClassNotFoundException | IOException e) {
+            //todo fix the method so CLassCastException is not mandatory (needed only when userList is empty)
+        } catch (ClassCastException | ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         System.out.println("########################################");

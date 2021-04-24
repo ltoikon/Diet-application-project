@@ -35,8 +35,8 @@ public class SignUp extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String emailErrorMessage1 = "Incorrect E-mail.";
-    private final String emailErrorMessage2 = "This E-mail address is already being used. Choose a different E-mail address.";
+    private final String emailErrorMessage1 = "Incorrect email.";
+    private final String emailErrorMessage2 = "This email address is already being used. Choose a different email address.";
     private final String nameErrorMessage = "This must not be blank.";
     private final String birthDateErrorMessage = "Enter valid birth date";
     private final String passwordErrorMessage = "Chosen password does not meet the password requirements.";
@@ -60,6 +60,8 @@ public class SignUp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
+        Context context = getActivity().getApplicationContext();
 
         editTextEmail = view.findViewById(R.id.inputEmailSignUp);
         editTextFirstName = view.findViewById(R.id.inputFirstNameSignup);
@@ -176,18 +178,18 @@ public class SignUp extends Fragment {
                     editTextConfirmPassword.setText(null);
 
                     userList.clear();
-                    userList = fileIO.getUsers(getActivity().getApplicationContext());
+                    userList = fileIO.getUsers(context);
 
                     User user = new User(email, password, firstName, lastName, birthDate, homeTown);
                     userList.add(user);
 
                     FileIO fileIO = FileIO.getInstance();
-                    fileIO.registerUser(userList, getActivity().getApplicationContext());
+                    fileIO.registerUser(userList, context);
                     System.out.println("Rekisteröityminen onnistui!");
 
                     mListener.changeFragment(0); // 0 == Login fragment
 
-                    //todo Vahvistusruutu käyttäjän luomisesta + tallennus tiedostoon (oliona)
+                    //todo Confirm screen
                 }
             }
         });
@@ -232,19 +234,19 @@ public class SignUp extends Fragment {
     }
 
     private boolean validateEmail() {
-        String mail = editTextEmail.getText().toString();
-        if (mail == null) {
+        String email = editTextEmail.getText().toString();
+        if (email == null) {
             return false;
         } else {
-            return Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+            return Patterns.EMAIL_ADDRESS.matcher(email).matches();
         }
     }
 
-    //todo make this method complete
+    // Checks if there already is account created for chosen email
     private boolean isEmailDuplicate(String email) {
         userList = fileIO.getUsers(getActivity().getApplicationContext());
         for (User user : userList) {
-            if (user.getEmail().toString().equals(email)) {
+            if (user.getEmail().equals(email)) {
                 return true;
             }
         }
@@ -265,7 +267,7 @@ public class SignUp extends Fragment {
         return false;
     }
 
-    //todo Does not check if the month has as many days or if it's leap year (Do if there is enough time)
+    // Validates the chosen date as a real date includin leap years etc.
     private boolean validateBirthDate() {
         Pattern pattern;
         Matcher matcher;
