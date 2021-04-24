@@ -1,14 +1,17 @@
 package com.example.course_project;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
 
-public class Meal {
+public class Meal implements Serializable {
     private Date date;
     private int pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
     private String timing;
     private double co2amount; //value fetched from API
+
+
 
     /*constructor*/
     public Meal (int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
@@ -24,6 +27,7 @@ public class Meal {
         this.timing = timing;
         co2amount = fetchClimateDiet();
         System.out.println("****************" + co2amount);
+
     }
 
     /*co2 amount using food ingredient info*/
@@ -34,8 +38,4 @@ public class Meal {
         return result;
     }
 
-    /* Do we use Meal class to do entries too or just for creating meal object*/
-    //TODO Meal Entry NEED OWN CLASS
-    public void entryInformation (){
-    }
 }

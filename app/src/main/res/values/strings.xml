@@ -28,6 +28,12 @@
     <string name="rice">Rice</string>
     <string name="winterSalad">Vegetables (Green house)</string>
 
+    <!-- fragment_person_info_entry.xml -->
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="kilograms">Kilograms</string>
+    <string name="meter">Meter</string>
+
     <!-- Placeholder class -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

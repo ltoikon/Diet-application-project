@@ -127,4 +127,62 @@ public class FileIO {
         System.out.println("########################################");
         return userList;
     }
+
+
+
+    //***********************object*********************************
+    //possible to replace all with this
+    public ArrayList readObjects(Context context, String fileName){
+        ArrayList<Object> objectList = new ArrayList<>();
+
+
+        try {
+            FileInputStream fis = context.openFileInput(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            objectList = (ArrayList) ois.readObject();
+
+            ois.close();
+            fis.close();
+
+            /*
+            for (int i = 1; i < objectList.size() + 1; i++) {
+                User object = (User) objectList.get(i - 1);
+
+                System.out.println("###");
+                System.out.println("Listan " + i + ". jäsen");
+                System.out.println("Email: " + object.getEmail());
+                System.out.println("Nimi: " + object.getFirstName() + " " + object.getLastName());
+                System.out.println("Syntymäpäivä: " + object.getBirthDate());
+                System.out.println("Asuinpaikka: " + object.getHomeTown());
+                System.out.println("###");
+            } */
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+    }
+
+        System.out.println("Object reading successful");
+        return objectList;
+    }
+
+    public void writeObjects(Context context, String fileName, ArrayList objectList){
+        try {
+         FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+         ObjectOutputStream oos = new ObjectOutputStream(fos);
+         oos.writeObject(objectList);
+
+         oos.close();
+         fos.close();
+         System.out.println("Object writing successful");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }

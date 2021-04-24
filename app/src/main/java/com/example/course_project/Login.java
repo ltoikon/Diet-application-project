@@ -16,9 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 
-public class Login extends Fragment {
+public class Login extends Fragment{
 
     static Login login = new Login();
     private EditText editTextEmail, editTextPassword;
@@ -72,6 +73,8 @@ public class Login extends Fragment {
             public void onClick(View v) {
 
                 userList = fileIO.getUsers(context);
+                //possible way to read
+                //userList = (ArrayList<User>) fileIO.readObjects(context, "userList.ser");
                 if (!editTextEmail.getText().toString().equals(email)) {
                     userID = getUserID(userList, editTextEmail.getText().toString());
                     System.out.println("########%%%########");
@@ -153,6 +156,9 @@ public class Login extends Fragment {
             @Override
             public void onClick(View v) {
                 userList = fileIO.getUsers(context);
+
+                //possible way to read
+                //userList = (ArrayList<User>) fileIO.readObjects(context, "userList.ser");
             }
         });
 

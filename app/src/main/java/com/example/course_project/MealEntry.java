@@ -1,6 +1,7 @@
 package com.example.course_project;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 
 public class MealEntry extends Fragment {
 
@@ -31,7 +34,7 @@ public class MealEntry extends Fragment {
             intRice, intEgg, intWinterSalad;
 
 
-
+    ArrayList<Meal> mealList = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
     FileIO fileIO = FileIO.getInstance();
     private MealEntry() {}
@@ -46,6 +49,7 @@ public class MealEntry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal_entry, container, false);
+        Context context = getActivity().getApplicationContext();
 
         editTextTiming = view.findViewById(R.id.inputTiming);
         editTextPork = view.findViewById(R.id.inputPork);
@@ -73,6 +77,7 @@ public class MealEntry extends Fragment {
                entryEgg = editTextEgg.getText().toString();
                entryWinterSalad = editTextWinterSalad.getText().toString();
 
+               /*Prevent crashing if user leaves value empty*/
                if (entryPork.length()==0){entryPork = "0";}
                if (entryBeef.length()==0){entryBeef = "0";}
                if (entryFish.length()==0){entryFish = "0";}
@@ -92,6 +97,10 @@ public class MealEntry extends Fragment {
                intWinterSalad = Integer.parseInt(entryWinterSalad);
 
                Meal meal = new Meal(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad, entryTiming);
+               mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
+               mealList.add(meal);
+               fileIO.writeObjects(context, "mealList.ser", mealList);
+
                mListener.changeFragment(0); // 0 == Login fragment
            }
        });
@@ -99,4 +108,24 @@ public class MealEntry extends Fragment {
 
         return view;
     }
+
+    /* TODO poistoon oli syy
+    // NOT NEEDED PERHAPS???***********************
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+     */
 }
