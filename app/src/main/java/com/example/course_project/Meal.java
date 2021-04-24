@@ -11,7 +11,7 @@ public class Meal {
     private double co2amount; //value fetched from API
 
     /*constructor*/
-    public Meal (int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
+    public Meal (int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
         date = new Date();
         this.pork = pork;
         this.fish = fish;
@@ -23,6 +23,7 @@ public class Meal {
         this.winterSalad = winterSalad;
         this.timing = timing;
         co2amount = fetchClimateDiet();
+        System.out.println("****************" + co2amount);
     }
 
     /*co2 amount using food ingredient info*/

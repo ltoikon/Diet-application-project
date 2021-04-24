@@ -36,7 +36,7 @@
         android:layout_marginBottom="140dp"
         android:ems="10"
         android:hint="@string/pieces"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -47,7 +47,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputWinterSalad"
         app:layout_constraintStart_toStartOf="@+id/inputWinterSalad" />
 
@@ -58,7 +58,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputEggs"
         app:layout_constraintStart_toStartOf="@+id/inputEggs" />
 
@@ -69,7 +69,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputRice"
         app:layout_constraintStart_toStartOf="@+id/inputRice" />
 
@@ -80,7 +80,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputCheese"
         app:layout_constraintStart_toStartOf="@+id/inputCheese" />
 
@@ -91,7 +91,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputDairy"
         app:layout_constraintStart_toStartOf="@+id/inputDairy" />
 
@@ -102,7 +102,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputFish"
         app:layout_constraintStart_toStartOf="@+id/inputFish" />
 
@@ -113,7 +113,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="@string/grams"
-        android:inputType="number"
+        android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputBeef"
         app:layout_constraintStart_toStartOf="@+id/inputBeef" />
 
