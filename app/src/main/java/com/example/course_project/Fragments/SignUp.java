@@ -50,6 +50,8 @@ public class SignUp extends Fragment {
 
     private String email, firstName, lastName, birthDate, homeTown, password;
 
+    private String userFile = "userList.ser";
+
     ArrayList<User> userList = new ArrayList<>();
 
     FileIO fileIO = FileIO.getInstance();
@@ -181,13 +183,15 @@ public class SignUp extends Fragment {
                     editTextConfirmPassword.setText(null);
 
                     userList.clear();
-                    userList = fileIO.getUsers(context);
+                    //userList = fileIO.getUsers(context);
+
+                    userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
 
                     User user = new User(email, password, firstName, lastName, birthDate, homeTown);
                     userList.add(user);
 
                     FileIO fileIO = FileIO.getInstance();
-                    fileIO.registerUser(userList, context);
+                    fileIO.writeObjects(context, userFile, userList);
                     System.out.println("Rekisteröityminen onnistui!");
 
                     mListener.changeFragment(0); // 0 == Login fragment
@@ -247,7 +251,7 @@ public class SignUp extends Fragment {
 
     // Checks if there already is account created for chosen email
     private boolean isEmailDuplicate(String email) {
-        userList = fileIO.getUsers(getActivity().getApplicationContext());
+        userList = (ArrayList<User>) fileIO.readObjects(getActivity().getApplicationContext(), userFile);
         for (User user : userList) {
             if (user.getEmail().equals(email)) {
                 return true;
