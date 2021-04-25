@@ -1,6 +1,5 @@
 package com.example.course_project;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -102,17 +100,23 @@ public class MealEntry extends Fragment {
                mealList.add(meal);
                fileIO.writeObjects(context, "mealList.ser", mealList);
 
-               changeActivity();
+               editTextPork.setText(null);
+               editTextBeef.setText(null);
+               editTextFish.setText(null);
+               editTextDairy.setText(null);
+               editTextCheese.setText(null);
+               editTextRice.setText(null);
+               editTextEgg.setText(null);
+               editTextWinterSalad.setText(null);
+               editTextTiming.setText(null);
+
+               Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
+
            }
        });
 
 
         return view;
-    }
-
-    public void changeActivity() {
-        Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
-        startActivity(intent);
     }
 
     /* TODO poistoon oli syy

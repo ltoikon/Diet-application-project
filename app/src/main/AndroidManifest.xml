@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Placeholder"
             android:theme="@style/Theme.Harkkalogin.NoActionBar"></activity>
-        <activity android:name=".LoginRegisterActivity">
+        <activity android:name=".StartApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

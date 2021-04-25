@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -55,8 +56,9 @@ public class Placeholder extends AppCompatActivity implements NavigationView.OnN
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, mealEntry).commit();
                 break;
-            case (R.id.nav_chat):
+            case (R.id.nav_logOff):
                 Toast.makeText(this, "Change to Chat fragment", Toast.LENGTH_SHORT).show();
+                changeActivity();
                 break;
             case (R.id.nav_profile):
                 Toast.makeText(this, "Change to Profile fragment", Toast.LENGTH_SHORT).show();
@@ -79,5 +81,10 @@ public class Placeholder extends AppCompatActivity implements NavigationView.OnN
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void changeActivity() {
+        Intent intent = new Intent(this, StartApp.class);
+        startActivity(intent);
     }
 }

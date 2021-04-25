@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 
-public class LoginRegisterActivity extends AppCompatActivity implements OnFragmentInteractionListener {
+public class StartApp extends AppCompatActivity implements OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
