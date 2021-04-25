@@ -1,4 +1,6 @@
-package com.example.course_project;
+package com.example.course_project.DataManagement;
+
+import com.example.course_project.DataManagement.ClimateDietAPI;
 
 import java.io.Serializable;
 import java.util.Date;

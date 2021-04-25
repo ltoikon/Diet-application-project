@@ -1,12 +1,16 @@
-package com.example.course_project;
+package com.example.course_project.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+
+import com.example.course_project.Fragments.Login;
+import com.example.course_project.Fragments.SignUp;
+import com.example.course_project.Interfaces.OnFragmentInteractionListener;
+import com.example.course_project.R;
 
 public class StartApp extends AppCompatActivity implements OnFragmentInteractionListener {
 

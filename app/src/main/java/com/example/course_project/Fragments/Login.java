@@ -1,4 +1,4 @@
-package com.example.course_project;
+package com.example.course_project.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.course_project.DataManagement.FileIO;
+import com.example.course_project.Interfaces.OnFragmentInteractionListener;
+import com.example.course_project.Activities.Placeholder;
+import com.example.course_project.R;
+import com.example.course_project.DataManagement.User;
 
 import java.util.ArrayList;
 
