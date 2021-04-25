@@ -18,8 +18,7 @@ import com.example.course_project.Fragments.MealEntry;
 import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 
-//todo rename class to something more describing
-public class Placeholder extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class FragmentController extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
 
@@ -86,7 +85,7 @@ public class Placeholder extends AppCompatActivity implements NavigationView.OnN
     }
 
     public void changeActivity() {
-        Intent intent = new Intent(this, StartApp.class);
+        Intent intent = new Intent(this, StartAppFragmentController.class);
         startActivity(intent);
     }
 }

@@ -60,8 +60,6 @@ public class PersonInfoEntry extends Fragment {
                 fileIO.writeObjects(context,"personInfoList.ser", personInfoList);
 
             }
-
-            //TODO cancel button?
         });
 
         return view;

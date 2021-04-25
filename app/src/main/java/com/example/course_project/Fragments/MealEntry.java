@@ -122,24 +122,4 @@ public class MealEntry extends Fragment {
 
         return view;
     }
-
-    /* TODO poistoon oli syy
-    // NOT NEEDED PERHAPS???***********************
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-     */
 }

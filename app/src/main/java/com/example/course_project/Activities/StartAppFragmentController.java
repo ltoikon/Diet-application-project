@@ -12,7 +12,7 @@ import com.example.course_project.Fragments.SignUp;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 
-public class StartApp extends AppCompatActivity implements OnFragmentInteractionListener {
+public class StartAppFragmentController extends AppCompatActivity implements OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

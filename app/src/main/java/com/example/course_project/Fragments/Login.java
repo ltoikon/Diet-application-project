@@ -17,9 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.course_project.Activities.FragmentController;
 import com.example.course_project.DataManagement.FileIO;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
-import com.example.course_project.Activities.Placeholder;
 import com.example.course_project.R;
 import com.example.course_project.DataManagement.User;
 
@@ -101,12 +101,6 @@ public class Login extends Fragment{
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
                     changeActivity();
-                    /*
-                    //TODO remove this test part
-                    //testing mealentry fragment
-                    mListener.changeFragment(2); // 2 == MealEntry fragment
-                    //todo switch to menu fragment
-                    */
                 }
                 // This is only for testing todo remove this
                 else if ((editTextEmail.getText().toString().equals(email)) &&
@@ -118,12 +112,6 @@ public class Login extends Fragment{
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
                     changeActivity();
-                    /*
-                    //TODO remove this test part
-                    //testing mealentry fragment
-                    mListener.changeFragment(2); // 2 == MealEntry fragment
-                    //todo switch to menu fragment
-                    */
                 } else {
                     passwordError.setText(passwordErrorMessage);
                     emailError.setText(null);
@@ -198,7 +186,7 @@ public class Login extends Fragment{
     }
 
     public void changeActivity() {
-        Intent intent = new Intent(getActivity(), Placeholder.class);
+        Intent intent = new Intent(getActivity(), FragmentController.class);
         startActivity(intent);
     }
 }
