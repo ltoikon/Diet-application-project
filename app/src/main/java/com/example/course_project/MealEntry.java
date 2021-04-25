@@ -96,7 +96,9 @@ public class MealEntry extends Fragment {
                intWinterSalad = Integer.parseInt(entryWinterSalad);
 
                Meal meal = new Meal(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad, entryTiming);
-               mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
+               if (mealList.size() == 0 ) {
+                   mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
+               }
                mealList.add(meal);
                fileIO.writeObjects(context, "mealList.ser", mealList);
 
@@ -119,23 +121,4 @@ public class MealEntry extends Fragment {
         return view;
     }
 
-    /* TODO poistoon oli syy
-    // NOT NEEDED PERHAPS???***********************
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-     */
 }

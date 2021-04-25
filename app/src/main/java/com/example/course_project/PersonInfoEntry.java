@@ -52,7 +52,9 @@ public class PersonInfoEntry extends Fragment {
                 doubleWeight = Double.parseDouble(entryWeight);
 
                 PersonInfo personInfo = new PersonInfo(doubleHeight, doubleWeight);
-                personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
+                if (personInfoList.size() == 0) {
+                    personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
+                }
                 personInfoList.add(personInfo);
                 fileIO.writeObjects(context,"personInfoList.ser", personInfoList);
 
