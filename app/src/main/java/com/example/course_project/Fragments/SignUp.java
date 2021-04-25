@@ -38,7 +38,7 @@ public class SignUp extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String emailErrorMessage1 = "Incorrect email.";
+    private final String emailErrorMessage1 = "Incorrect email format.";
     private final String emailErrorMessage2 = "This email address is already being used. Choose a different email address.";
     private final String nameErrorMessage = "This must not be blank.";
     private final String birthDateErrorMessage = "Enter valid birth date";
@@ -98,66 +98,55 @@ public class SignUp extends Fragment {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int errorCount = 0;
+
                 //todo make all of the error messages to appear instead of only one (only if we don't run out of time)
                 if (!validateEmail()) {
-                    if (!isEmailDuplicate(editTextEmail.getText().toString())) {
-                        emailError.setText(emailErrorMessage1);
-                        firstNameError.setText(null);
-                        lastNameError.setText(null);
-                        birthDateError.setText(null);
-                        homeTownError.setText(null);
-                        passwordError.setText(null);
-                        confirmPasswordError.setText(null);
-                    }
-                } else if (!validateFirstName()) {
-                    emailError.setText(null);
-                    firstNameError.setText(nameErrorMessage);
-                    lastNameError.setText(null);
-                    birthDateError.setText(null);
-                    homeTownError.setText(null);
-                    passwordError.setText(null);
-                    confirmPasswordError.setText(null);
-                } else if (!validateLastName()) {
-                    emailError.setText(null);
-                    firstNameError.setText(null);
-                    lastNameError.setText(nameErrorMessage);
-                    birthDateError.setText(null);
-                    homeTownError.setText(null);
-                    passwordError.setText(null);
-                    confirmPasswordError.setText(null);
-                } else if (!validateBirthDate()) {
-                    emailError.setText(null);
-                    firstNameError.setText(null);
-                    lastNameError.setText(null);
-                    birthDateError.setText(birthDateErrorMessage);
-                    homeTownError.setText(null);
-                    passwordError.setText(null);
-                    confirmPasswordError.setText(null);
-                } else if (!validateHomeTown()) {
-                    emailError.setText(null);
-                    firstNameError.setText(null);
-                    lastNameError.setText(null);
-                    birthDateError.setText(null);
-                    homeTownError.setText(nameErrorMessage);
-                    passwordError.setText(null);
-                    confirmPasswordError.setText(null);
-                } else if (!validatePassword()) {
-                    emailError.setText(null);
-                    firstNameError.setText(null);
-                    lastNameError.setText(null);
-                    birthDateError.setText(null);
-                    homeTownError.setText(null);
-                    passwordError.setText(passwordErrorMessage);
-                    confirmPasswordError.setText(null);
-                } else if (!confirmPassword()) {
-                    emailError.setText(null);
-                    firstNameError.setText(null);
-                    lastNameError.setText(null);
-                    birthDateError.setText(null);
-                    homeTownError.setText(null);
-                    passwordError.setText(null);
-                    confirmPasswordError.setText(confirmPasswordErrorMessage);
+                    emailError.setText(emailErrorMessage1);
+                    errorCount++;
+                } else if (isEmailDuplicate(editTextEmail.getText().toString())) {
+                    emailError.setText(emailErrorMessage2);
+                    errorCount++;
                 } else {
+                    emailError.setText(null);
+                }
+                if (!validateFirstName()) {
+                    firstNameError.setText(nameErrorMessage);
+                    errorCount++;
+                } else {
+                    firstNameError.setText(null);
+                }
+                if (!validateLastName()) {
+                    lastNameError.setText(nameErrorMessage);
+                    errorCount++;
+                } else {
+                    lastNameError.setText(null);
+                }
+                if (!validateBirthDate()) {
+                    birthDateError.setText(birthDateErrorMessage);
+                    errorCount++;
+                } else {
+                    birthDateError.setText(null);
+                }
+                if (!validateHomeTown()) {
+                    homeTownError.setText(nameErrorMessage);
+                    errorCount++;
+                } else {
+                    homeTownError.setText(null);
+                }
+                if (!validatePassword()) {
+                    passwordError.setText(passwordErrorMessage);
+                    errorCount++;
+                } else {
+                    passwordError.setText(null);
+                }
+                if (!confirmPassword()) {
+                    confirmPasswordError.setText(confirmPasswordErrorMessage);
+                    errorCount++;
+                } else {
+                    confirmPasswordError.setText(null);
+                }
+                if (errorCount == 0) {
                     emailError.setText(null);
                     firstNameError.setText(null);
                     lastNameError.setText(null);
@@ -183,7 +172,6 @@ public class SignUp extends Fragment {
                     editTextConfirmPassword.setText(null);
 
                     userList.clear();
-                    //userList = fileIO.getUsers(context);
 
                     userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
 
