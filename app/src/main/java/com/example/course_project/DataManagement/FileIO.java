@@ -77,11 +77,6 @@ public class FileIO {
 
     }
 
-    public void appendFile(String inputName, ArrayList<Double> inputArray){
-        fileName = inputName;
-        System.out.println("Writing done");
-    }
-
     // Writes User to a file
     public void registerUser(ArrayList<User> userList, Context context) {
         try {
@@ -119,8 +114,7 @@ public class FileIO {
                 System.out.println("Asuinpaikka: " + user.getHomeTown());
                 System.out.println("###");
             }
-            //todo fix the method so CLassCastException is not mandatory (needed only when userList is empty)
-        } catch (ClassCastException | ClassNotFoundException | IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         System.out.println("########################################");

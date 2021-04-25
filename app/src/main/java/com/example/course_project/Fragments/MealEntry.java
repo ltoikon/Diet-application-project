@@ -124,5 +124,4 @@ public class MealEntry extends Fragment {
 
         return view;
     }
-
 }
