@@ -34,6 +34,8 @@ public class Login extends Fragment{
     private Button printUserList; //todo this is temporary
     private boolean showing = false;
 
+    private String userFile = "userList.ser";
+
     FileIO fileIO = FileIO.getInstance();
 
     private OnFragmentInteractionListener mListener;
@@ -78,9 +80,10 @@ public class Login extends Fragment{
             @Override
             public void onClick(View v) {
 
-                userList = fileIO.getUsers(context);
+                //userList = fileIO.getUsers(context);
+
                 //possible way to read
-                //userList = (ArrayList<User>) fileIO.readObjects(context, "userList.ser");
+                userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
                 if (!editTextEmail.getText().toString().equals(email)) {
                     userID = getUserID(userList, editTextEmail.getText().toString());
                     System.out.println("########%%%########");
@@ -149,10 +152,24 @@ public class Login extends Fragment{
         printUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userList = fileIO.getUsers(context);
+                //userList = fileIO.getUsers(context);
 
                 //possible way to read
-                //userList = (ArrayList<User>) fileIO.readObjects(context, "userList.ser");
+                userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
+
+                int i = 0;
+                for (User user : userList) {
+                    i++;
+
+                    System.out.println("###");
+                    System.out.println("Listan " + i + ". jäsen");
+                    System.out.println("Email: " + user.getEmail());
+                    System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
+                    System.out.println("Syntymäpäivä: " + user.getBirthDate());
+                    System.out.println("Asuinpaikka: " + user.getHomeTown());
+                    System.out.println("Salasana: " + user.getPassword());
+                    System.out.println("###");
+                }
             }
         });
 

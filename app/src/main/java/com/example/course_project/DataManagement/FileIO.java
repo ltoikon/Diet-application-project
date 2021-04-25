@@ -13,8 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-//TODO move unnecessary stuff from method to object calling it
-//TODO read and write as objects
+
 public class FileIO {
 
     static FileIO fileIO = new FileIO();
@@ -35,17 +34,14 @@ public class FileIO {
 
     public ArrayList<Double> readFile(String inputName, Context context) throws IOException {
         fileName = inputName;
-        {
-
-            try {
-                ins = context.openFileInput(fileName + ".csv");
-                csvReader = new BufferedReader(new InputStreamReader(ins));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-        }   //open file
-        csvReader.readLine();           //skip header line
+        try {
+            ins = context.openFileInput(fileName + ".csv");
+            csvReader = new BufferedReader(new InputStreamReader(ins));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //open file
+        csvReader.readLine();   //skip header line
         while ((row = csvReader.readLine()) != null){
             String[] infoPerRow = row.split(",");
             weightArray.add(Double.valueOf(infoPerRow[1]));
@@ -74,61 +70,12 @@ public class FileIO {
         }
         csvWriter.close();
         System.out.println("Writing done");
-
     }
 
-    // Writes User to a file
-    public void registerUser(ArrayList<User> userList, Context context) {
-        try {
-            FileOutputStream fos = context.openFileOutput("userList.ser", Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(userList);
-            oos.close();
-            fos.close();
-        } catch (IOException e) {
-            System.out.println("###################");
-            e.printStackTrace();
-            System.out.println("###################");
-        }
-    }
-
-    // Reads User objects from a file and returns list of them as an ArrayList
-    public ArrayList<User> getUsers(Context context) {
-        User user = null;
-        ArrayList<User> userList = new ArrayList<>();
-
-        System.out.println("#################### getUsers ####################");
-        try {
-            FileInputStream fis = context.openFileInput("userList.ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            userList = (ArrayList<User>) ois.readObject();
-
-            for (int i = 1; i < userList.size() + 1; i++) {
-                user = userList.get(i-1);
-
-                System.out.println("###");
-                System.out.println("Listan " + i + ". jäsen");
-                System.out.println("Email: " + user.getEmail());
-                System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
-                System.out.println("Syntymäpäivä: " + user.getBirthDate());
-                System.out.println("Asuinpaikka: " + user.getHomeTown());
-                System.out.println("###");
-            }
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("########################################");
-        return userList;
-    }
-
-
-
-    //***********************object*********************************
-    //possible to replace all with this
+    /* Takes context and name of the file where data is stored as parameters. Reads the ArrayList
+       inside the file and returns the ArrayList. */
     public ArrayList readObjects(Context context, String fileName){
         ArrayList<Object> objectList = new ArrayList<>();
-
-
         try {
             FileInputStream fis = context.openFileInput(fileName);
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -136,20 +83,6 @@ public class FileIO {
 
             ois.close();
             fis.close();
-
-            /*
-            for (int i = 1; i < objectList.size() + 1; i++) {
-                User object = (User) objectList.get(i - 1);
-
-                System.out.println("###");
-                System.out.println("Listan " + i + ". jäsen");
-                System.out.println("Email: " + object.getEmail());
-                System.out.println("Nimi: " + object.getFirstName() + " " + object.getLastName());
-                System.out.println("Syntymäpäivä: " + object.getBirthDate());
-                System.out.println("Asuinpaikka: " + object.getHomeTown());
-                System.out.println("###");
-            } */
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -157,11 +90,12 @@ public class FileIO {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
     }
-
         System.out.println("Object reading successful");
         return objectList;
     }
 
+    /* Takes context, name of the file where data will be stored and ArrayList containing the data
+       as parameters. The method writes the ArrayList to the file. */
     public void writeObjects(Context context, String fileName, ArrayList objectList){
         try {
          FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
@@ -174,8 +108,5 @@ public class FileIO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
