@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.course_project.Fragments.MealEntry;
+import com.example.course_project.Fragments.MealLog;
 import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -66,6 +67,9 @@ public class FragmentController extends AppCompatActivity implements NavigationV
                 break;
             case (R.id.nav_share):
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Fragment mealLog = MealLog.getInstance();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, mealLog).commit();
                 break;
             case (R.id.nav_send):
                 Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();

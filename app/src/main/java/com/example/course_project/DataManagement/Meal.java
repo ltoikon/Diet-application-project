@@ -40,4 +40,8 @@ public class Meal implements Serializable {
         return result;
     }
 
+    public Date getDate() {return date;}
+
+    public double getCo2amount() {return co2amount;}
+
 }

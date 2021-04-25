@@ -17,13 +17,13 @@ import javax.net.ssl.HttpsURLConnection;
 /*using JSON on API request */
 public class ClimateDietAPI {
     private double co2;
-    private final int avePork = 1000;
-    private final int aveBeef = 400;
-    private final int aveFish = 600;
-    private final int aveCheese = 300;
-    private final int aveDairy = 3800;
-    private final int aveRice = 90;
-    private final int aveWinterSalad = 1400; // finn average grams per week,
+    private final double avePork = 1000;
+    private final double aveBeef = 400;
+    private final double aveFish = 600;
+    private final double aveCheese = 300;
+    private final double aveDairy = 3800;
+    private final double aveRice = 90;
+    private final double aveWinterSalad = 1400; // finn average grams per week,
     public ClimateDietAPI(){
 
     }
@@ -46,13 +46,21 @@ public class ClimateDietAPI {
     }
 
     public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
-        pork = (pork/ avePork)*100;
-        fish = (fish/aveFish)*100;
-        beef = (beef/aveBeef)*100;
-        dairy = (dairy/aveDairy)*100;
-        cheese = (cheese/aveCheese)*100;
-        rice = (rice/aveRice)*100;
-        winterSalad = (winterSalad/aveWinterSalad)*100;
+        Double doublePork = (Double.valueOf(pork)/ avePork)*100;
+        Double doubleFish = (Double.valueOf(fish)/aveFish)*100;
+        Double doubleBeef = (Double.valueOf(beef)/aveBeef)*100;
+        Double doubleDairy = (Double.valueOf(dairy)/aveDairy)*100;
+        Double doubleCheese = (Double.valueOf(cheese)/aveCheese)*100;
+        Double doubleRice = (Double.valueOf(rice)/aveRice)*100;
+        Double doubleWinterSalad = (Double.valueOf(winterSalad)/aveWinterSalad)*100;
+
+        pork = (int) Math.round(doublePork);
+        fish = (int) Math.round(doubleFish);
+        beef = (int) Math.round(doubleBeef);
+        dairy = (int) Math.round(doubleDairy);
+        cheese = (int) Math.round(doubleCheese);
+        rice = (int) Math.round(doubleRice);
+        winterSalad = (int) Math.round(doubleWinterSalad);
 
         String url = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/"
                 + "calculatorapi/v1/FoodCalculator?query.diet=omnivore&query.beefLevel=" + beef +
@@ -63,6 +71,7 @@ public class ClimateDietAPI {
                 "&query.riceLevel="+ rice +
                 "&query.eggLevel="+ egg +
                 "&query.winterSaladLevel="+ winterSalad;
+        System.out.println(url);
         return url;
     }
 

@@ -38,7 +38,7 @@ public class MealEntry extends Fragment {
 
 
     ArrayList<Meal> mealList = new ArrayList<>();
-    private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener; //todo saako poistaa?
     FileIO fileIO = FileIO.getInstance();
     private MealEntry() {}
 
@@ -100,6 +100,9 @@ public class MealEntry extends Fragment {
                intWinterSalad = Integer.parseInt(entryWinterSalad);
 
                Meal meal = new Meal(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad, entryTiming);
+               /*if (mealList.size() == 0 ) {
+                   mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
+               }*/
                mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
                mealList.add(meal);
                fileIO.writeObjects(context, "mealList.ser", mealList);
