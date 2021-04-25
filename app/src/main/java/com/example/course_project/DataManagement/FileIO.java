@@ -1,9 +1,8 @@
-package com.example.course_project;
+package com.example.course_project.DataManagement;
 
 import android.content.Context;
 
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

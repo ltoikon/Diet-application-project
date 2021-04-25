@@ -1,4 +1,4 @@
-package com.example.course_project;
+package com.example.course_project.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.course_project.Fragments.MealEntry;
+import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 
 //todo rename class to something more describing

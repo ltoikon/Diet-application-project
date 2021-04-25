@@ -1,4 +1,4 @@
-package com.example.course_project;
+package com.example.course_project.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.course_project.DataManagement.FileIO;
+import com.example.course_project.DataManagement.PersonInfo;
+import com.example.course_project.R;
 
 import java.util.ArrayList;
 

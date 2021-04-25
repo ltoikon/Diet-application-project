@@ -1,4 +1,4 @@
-package com.example.course_project;
+package com.example.course_project.DataManagement;
 
 import org.json.JSONException;
 import org.json.JSONObject;

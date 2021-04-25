@@ -1,4 +1,4 @@
-package com.example.course_project;
+package com.example.course_project.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.course_project.DataManagement.FileIO;
+import com.example.course_project.DataManagement.User;
+import com.example.course_project.Interfaces.OnFragmentInteractionListener;
+import com.example.course_project.R;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
