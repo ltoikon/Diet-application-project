@@ -14,13 +14,20 @@ import androidx.fragment.app.Fragment;
 import com.example.course_project.DataManagement.FileIO;
 import com.example.course_project.DataManagement.Meal;
 import com.example.course_project.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class MealLog extends Fragment {
     static MealLog mealLog = new MealLog();
 
-    private TextView textLog;
+    //private TextView textLog;
+    //private LineChart chart;
 
     ArrayList<Meal> mealList = new ArrayList<>();
     private MealLog() {}
@@ -35,8 +42,8 @@ public class MealLog extends Fragment {
         View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
         Context context = getActivity().getApplicationContext();
 
-        textLog = view.findViewById(R.id.textViewLog);
-
+        TextView textLog = view.findViewById(R.id.textViewLog);
+        LineChart chart = (LineChart) view.findViewById(R.id.chart);
         mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
 
         textLog.setText("Date ; co2amount\n");
@@ -44,6 +51,21 @@ public class MealLog extends Fragment {
             textLog.append(meal.getDate() + " ; " + meal.getCo2amount()+"\n");
 
         }
+
+        List<Entry> entries = new ArrayList<Entry>();
+        int i=0;
+        for (Meal data : mealList){
+            i++;
+            entries.add(new Entry(i, (float) data.getCo2amount()));
+            System.out.println(i);
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, "Weight");
+        LineData lineData = new LineData(dataSet);
+        //dataSet.setColor(...);
+        //dataSet.setValueTextColor(...);
+        chart.setData(lineData);
+        chart.invalidate();
 
         return view;
     }
