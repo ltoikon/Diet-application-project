@@ -19,22 +19,30 @@ import android.widget.Toast;
 
 import com.example.course_project.Activities.FragmentController;
 import com.example.course_project.DataManagement.FileIO;
+import com.example.course_project.DataManagement.ProtectPassword;
+import com.example.course_project.DataManagement.UserSalt;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 import com.example.course_project.DataManagement.User;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Login extends Fragment{
 
-    static Login login = new Login();
+    static Login login;
+    static {
+        try {
+            login = new Login();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
     private EditText editTextEmail, editTextPassword;
     private TextView emailError, passwordError;
     private Button bLogin, bSignUp, bShow;
     private Button printUserList; //todo this is temporary
     private boolean showing = false;
-
-    private String userFile = "userList.ser";
 
     FileIO fileIO = FileIO.getInstance();
 
@@ -44,13 +52,19 @@ public class Login extends Fragment{
     private final String passwordErrorMessage = "Incorrect password.";
 
     // For testing only
-    private final String email = "Email", password = "Password";
+    private final String testEmail = "Email";
+    private final byte[] testSalt = ProtectPassword.getSalt();
+    private final String testPassword = ProtectPassword.getSecurePassword("Password", testSalt);
+
+    private String userFile = "userList.ser";
+    private String saltFile = "salt.ser";
 
     ArrayList<User> userList = new ArrayList<>();
+    ArrayList<UserSalt> saltList = new ArrayList<>();
 
     private int userID = 0;
 
-    private Login() {}
+    private Login() throws NoSuchAlgorithmException {}
 
     public static Login getInstance() {
         return login;
@@ -80,15 +94,28 @@ public class Login extends Fragment{
             @Override
             public void onClick(View v) {
                 userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
-                if (!editTextEmail.getText().toString().equals(email)) {
+                saltList = (ArrayList<UserSalt>) fileIO.readObjects(context, saltFile);
+                byte[] salt = null;
+
+                if (!editTextEmail.getText().toString().equals(testEmail)) {
                     userID = getUserID(userList, editTextEmail.getText().toString());
+                    if (userID != -1) {
+                        salt = saltList.get(userID).getSalt();
+                    } else {
+                        salt = testSalt;
+                    }
                     System.out.println("########%%%########");
+                } else {
+                    salt = testSalt;
                 }
                 System.out.println("#####" + userID + "#####");
 
+
+
+
                 // This is only for testing todo remove this
-                if ((editTextEmail.getText().toString().equals(email)) &&
-                        editTextPassword.getText().toString().equals(password)) {
+                if ((editTextEmail.getText().toString().equals(testEmail)) &&
+                        ProtectPassword.getSecurePassword(editTextPassword.getText().toString(), salt).equals(testPassword)) {
                     emailError.setText(null);
                     passwordError.setText(null);
                     System.out.println("Kirjautuminen onnistui");
@@ -103,7 +130,7 @@ public class Login extends Fragment{
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Tuntematon käyttäjänimi.", Toast.LENGTH_SHORT).show();
-                } else if (userList.get(userID).getPassword().equals(editTextPassword.getText().toString())) {
+                } else if (userList.get(userID).getPassword().equals(ProtectPassword.getSecurePassword(editTextPassword.getText().toString(), salt))) {
                     emailError.setText(null);
                     passwordError.setText(null);
                     System.out.println("Kirjautuminen onnistui");

@@ -17,10 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.course_project.DataManagement.FileIO;
+import com.example.course_project.DataManagement.ProtectPassword;
 import com.example.course_project.DataManagement.User;
+import com.example.course_project.DataManagement.UserSalt;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,11 +51,14 @@ public class SignUp extends Fragment {
     private final String info = "Password must contain at least 12 characters, including at least " +
             "1 upper and lower case letter, 1 number and 1 special character.";
 
-    private String email, firstName, lastName, birthDate, homeTown, password;
+    private String email, firstName, lastName, birthDate, homeTown, password, hashedPassword;
+    byte[] salt;
 
     private String userFile = "userList.ser";
+    private String saltFile = "salt.ser";
 
     ArrayList<User> userList = new ArrayList<>();
+    ArrayList<UserSalt> saltList = new ArrayList<>();
 
     FileIO fileIO = FileIO.getInstance();
 
@@ -162,6 +168,13 @@ public class SignUp extends Fragment {
                     homeTown = editTextHomeTown.getText().toString();
                     password = editTextPassword.getText().toString();
 
+                    try {
+                        salt = ProtectPassword.getSalt();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+                    hashedPassword = ProtectPassword.getSecurePassword(password, salt);
+
                     editTextEmail.setText(null);
                     editTextFirstName.setText(null);
                     editTextLastName.setText(null);
@@ -175,11 +188,15 @@ public class SignUp extends Fragment {
 
                     userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
 
-                    User user = new User(email, password, firstName, lastName, birthDate, homeTown);
+                    User user = new User(email, hashedPassword, firstName, lastName, birthDate, homeTown);
                     userList.add(user);
+
+                    UserSalt saltUser = new UserSalt(email, salt);
+                    saltList.add(saltUser);
 
                     FileIO fileIO = FileIO.getInstance();
                     fileIO.writeObjects(context, userFile, userList);
+                    fileIO.writeObjects(context, saltFile, saltList);
                     System.out.println("Rekisteröityminen onnistui!");
 
                     mListener.changeFragment(0); // 0 == Login fragment
