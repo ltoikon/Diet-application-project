@@ -6,8 +6,6 @@ import java.util.Date;
 
 public class PersonInfo implements Serializable {
 
-    FileIO fileio = FileIO.getInstance();
-
     private double height;
     private double weight;
     private double bmi;
@@ -18,6 +16,7 @@ public class PersonInfo implements Serializable {
          bmi = (weight/(height*height));
          this.height = height;
          this.weight = weight;
+         System.out.println(bmi); //TODO exist for test purposes
      }
 
     public Date getDate() {return date;}

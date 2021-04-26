@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -55,11 +56,17 @@ public class PersonInfoEntry extends Fragment {
                 doubleWeight = Double.parseDouble(entryWeight);
 
                 PersonInfo personInfo = new PersonInfo(doubleHeight, doubleWeight);
-                if (personInfoList.size() == 0) {
+                /*if (personInfoList.size() == 0) {
                     personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
-                }
+                }*/
+
+                personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
                 personInfoList.add(personInfo);
                 fileIO.writeObjects(context,"personInfoList.ser", personInfoList);
+
+                editTextHeight.setText(null);
+                editTextWeight.setText(null);
+                Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
 
             }
         });

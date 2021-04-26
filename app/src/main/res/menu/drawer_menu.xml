@@ -18,11 +18,14 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:title="@string/share" />
+                android:id="@+id/nav_meal_log"
+                android:title="@string/meal_log" />
             <item
-                android:id="@+id/nav_send"
-                android:title="@string/send" />
+                android:id="@+id/nav_weight_log"
+                android:title="@string/weight_log" />
+            <item
+                android:id="@+id/nav_weight"
+                android:title="@string/entry_weight" />
 
         </menu>
     </item>

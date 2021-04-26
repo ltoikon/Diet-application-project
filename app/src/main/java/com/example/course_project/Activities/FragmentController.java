@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.course_project.Fragments.MealEntry;
 import com.example.course_project.Fragments.MealLog;
+import com.example.course_project.Fragments.PersonInfoEntry;
+import com.example.course_project.Fragments.PersonInfoLog;
 import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -65,14 +67,23 @@ public class FragmentController extends AppCompatActivity implements NavigationV
             case (R.id.nav_profile):
                 Toast.makeText(this, "Change to Profile fragment", Toast.LENGTH_SHORT).show();
                 break;
-            case (R.id.nav_share):
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+            case (R.id.nav_meal_log):
+                Toast.makeText(this, "Meal log", Toast.LENGTH_SHORT).show();
                 Fragment mealLog = MealLog.getInstance();
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, mealLog).commit();
                 break;
-            case (R.id.nav_send):
+            case (R.id.nav_weight_log):
                 Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+                Fragment personInfoLog = PersonInfoLog.getInstance();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, personInfoLog).commit();
+                break;
+            case (R.id.nav_weight):
+                Toast.makeText(this, "Weight entry", Toast.LENGTH_SHORT).show();
+                Fragment personInfoEntry = PersonInfoEntry.getInstance();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, personInfoEntry).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

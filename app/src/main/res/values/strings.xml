@@ -40,6 +40,7 @@
     <string name="log_out">Log out</string>
     <string name="profile">Profile</string>
     <string name="message">Message</string>
-    <string name="share">Share</string>
-    <string name="send">Send</string>
+    <string name="meal_log">Meal Log</string>
+    <string name="weight_log">Weight Log</string>
+    <string name="entry_weight">Weight</string>
 </resources>
