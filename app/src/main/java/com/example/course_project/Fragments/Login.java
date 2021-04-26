@@ -48,7 +48,7 @@ public class Login extends Fragment{
 
     ArrayList<User> userList = new ArrayList<>();
 
-    private int userID;
+    private int userID = 0;
 
     private Login() {}
 
@@ -79,24 +79,16 @@ public class Login extends Fragment{
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //userList = fileIO.getUsers(context);
-
-                //possible way to read
                 userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
                 if (!editTextEmail.getText().toString().equals(email)) {
                     userID = getUserID(userList, editTextEmail.getText().toString());
                     System.out.println("########%%%########");
                 }
+                System.out.println("#####" + userID + "#####");
 
-                if (userID == -1) {
-                    emailError.setText(emailErrorMessage);
-                    passwordError.setText(null);
-                    System.out.println("Väärä käyttäjänimi:");
-                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
-                    System.out.println("Salasana: " + editTextPassword.getText().toString());
-                    Toast.makeText(getActivity(), "Tuntematon käyttäjänimi.", Toast.LENGTH_SHORT).show();
-                } else if (userList.get(userID).getPassword().equals(editTextPassword.getText().toString())) {
+                // This is only for testing todo remove this
+                if ((editTextEmail.getText().toString().equals(email)) &&
+                        editTextPassword.getText().toString().equals(password)) {
                     emailError.setText(null);
                     passwordError.setText(null);
                     System.out.println("Kirjautuminen onnistui");
@@ -104,10 +96,14 @@ public class Login extends Fragment{
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
                     changeActivity();
-                }
-                // This is only for testing todo remove this
-                else if ((editTextEmail.getText().toString().equals(email)) &&
-                        editTextPassword.getText().toString().equals(password)) {
+                } else if (userID == -1) {
+                    emailError.setText(emailErrorMessage);
+                    passwordError.setText(null);
+                    System.out.println("Väärä käyttäjänimi:");
+                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
+                    System.out.println("Salasana: " + editTextPassword.getText().toString());
+                    Toast.makeText(getActivity(), "Tuntematon käyttäjänimi.", Toast.LENGTH_SHORT).show();
+                } else if (userList.get(userID).getPassword().equals(editTextPassword.getText().toString())) {
                     emailError.setText(null);
                     passwordError.setText(null);
                     System.out.println("Kirjautuminen onnistui");

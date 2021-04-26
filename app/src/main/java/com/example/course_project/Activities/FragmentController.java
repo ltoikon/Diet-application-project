@@ -47,14 +47,14 @@ public class FragmentController extends AppCompatActivity implements NavigationV
             Fragment mealEntry = MealEntry.getInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, mealEntry).commit();
-            navigationView.setCheckedItem(R.id.nav_message);
+            navigationView.setCheckedItem(R.id.nav_mealEntry);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case (R.id.nav_message):
+            case (R.id.nav_mealEntry):
                 System.out.println("Vaihtuu mealEntry-fragmenttiin");
                 Fragment mealEntry = MealEntry.getInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -79,7 +79,7 @@ public class FragmentController extends AppCompatActivity implements NavigationV
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, personInfoLog).commit();
                 break;
-            case (R.id.nav_weight):
+            case (R.id.nav_weightAndHeight):
                 Toast.makeText(this, "Weight entry", Toast.LENGTH_SHORT).show();
                 Fragment personInfoEntry = PersonInfoEntry.getInstance();
                 transaction = getSupportFragmentManager().beginTransaction();

@@ -37,10 +37,10 @@
     <!-- FragmentController class -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="log_out">Log out</string>
-    <string name="profile">Profile</string>
-    <string name="message">Message</string>
+    <string name="log_out">Log Out</string>
+    <string name="profile">Profile //this can be changed</string>
+    <string name="mealEntry">Meal Entry</string>
     <string name="meal_log">Meal Log</string>
     <string name="weight_log">Weight Log</string>
-    <string name="entry_weight">Weight</string>
+    <string name="entry_weight">Update Weight And Height</string>
 </resources>
