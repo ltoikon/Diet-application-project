@@ -12,7 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.Meal;
+import com.example.course_project.DataManagement.Consumption;
+import com.example.course_project.DataManagement.User;
 import com.example.course_project.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -21,19 +22,22 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class MealLog extends Fragment {
-    static MealLog mealLog = new MealLog();
+public class ConsumptionLog extends Fragment {
+    static ConsumptionLog consumptionLog = new ConsumptionLog();
 
     //private TextView textLog;
     //private LineChart chart;
 
-    ArrayList<Meal> mealList = new ArrayList<>();
-    private MealLog() {}
-    public static MealLog getInstance() {
-        return mealLog;
+    ArrayList<Consumption> consumptionList = new ArrayList<>();
+
+    private ConsumptionLog() {
     }
+
+    public static ConsumptionLog getInstance() {
+        return consumptionLog;
+    }
+
     FileIO fileIO = FileIO.getInstance();
 
     @Nullable
@@ -42,19 +46,22 @@ public class MealLog extends Fragment {
         View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
         Context context = getActivity().getApplicationContext();
 
+        User profile = (User) getArguments().getSerializable("User");
+        String fileName = profile.getFirstName() + profile.getLastName() + "MealList.ser";
+
         TextView textLog = view.findViewById(R.id.textViewLog);
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
-        mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
+        consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
 
         textLog.setText("Date ; co2amount\n");
-        for (Meal meal : mealList){
-            textLog.append(meal.getDate() + " ; " + meal.getCo2amount()+"\n");
+        for (Consumption consumption : consumptionList) {
+            textLog.append(consumption.getDate() + " ; " + consumption.getCo2amount() + "\n");
 
         }
 
         List<Entry> entries = new ArrayList<Entry>();
-        int i=0;
-        for (Meal data : mealList){
+        int i = 0;
+        for (Consumption data : consumptionList) {
             i++;
             entries.add(new Entry(i, (float) data.getCo2amount()));
             System.out.println(i);

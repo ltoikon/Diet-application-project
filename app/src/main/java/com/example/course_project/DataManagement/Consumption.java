@@ -1,13 +1,11 @@
 package com.example.course_project.DataManagement;
 
-import com.example.course_project.DataManagement.ClimateDietAPI;
-
 import java.io.Serializable;
 import java.util.Date;
 
 
 
-public class Meal implements Serializable {
+public class Consumption implements Serializable {
     private Date date;
     private int pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
     private String timing;
@@ -16,7 +14,7 @@ public class Meal implements Serializable {
 
 
     /*constructor*/
-    public Meal (int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
+    public Consumption(int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
         date = new Date();
         this.pork = pork;
         this.fish = fish;

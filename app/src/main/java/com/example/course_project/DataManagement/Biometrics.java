@@ -1,17 +1,16 @@
 package com.example.course_project.DataManagement;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
-public class PersonInfo implements Serializable {
+public class Biometrics implements Serializable {
 
     private double height;
     private double weight;
     private double bmi;
     private Date date;
     //Constructor for entry
-     public PersonInfo(double height, double weight){
+     public Biometrics(double height, double weight){
          date = new Date();
          bmi = (weight/(height*height));
          this.height = height;

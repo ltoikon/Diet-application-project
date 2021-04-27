@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.course_project.Activities.FragmentController;
 import com.example.course_project.DataManagement.FileIO;
 import com.example.course_project.DataManagement.ProtectPassword;
-import com.example.course_project.DataManagement.UserSalt;
+import com.example.course_project.DataManagement.Salt;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 import com.example.course_project.DataManagement.User;
@@ -28,9 +28,10 @@ import com.example.course_project.DataManagement.User;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-public class Login extends Fragment{
+public class Login extends Fragment {
 
     static Login login;
+
     static {
         try {
             login = new Login();
@@ -38,6 +39,7 @@ public class Login extends Fragment{
             e.printStackTrace();
         }
     }
+
     private EditText editTextEmail, editTextPassword;
     private TextView emailError, passwordError;
     private Button bLogin, bSignUp, bShow;
@@ -51,20 +53,16 @@ public class Login extends Fragment{
     private final String emailErrorMessage = "The email is not registered in our system.";
     private final String passwordErrorMessage = "Incorrect password.";
 
-    // For testing only
-    private final String testEmail = "Email";
-    private final byte[] testSalt = ProtectPassword.getSalt();
-    private final String testPassword = ProtectPassword.getSecurePassword("Password", testSalt);
-
     private String userFile = "userList.ser";
     private String saltFile = "salt.ser";
 
     ArrayList<User> userList = new ArrayList<>();
-    ArrayList<UserSalt> saltList = new ArrayList<>();
+    ArrayList<Salt> saltList = new ArrayList<>();
 
     private int userID = 0;
 
-    private Login() throws NoSuchAlgorithmException {}
+    private Login() throws NoSuchAlgorithmException {
+    }
 
     public static Login getInstance() {
         return login;
@@ -94,36 +92,19 @@ public class Login extends Fragment{
             @Override
             public void onClick(View v) {
                 userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
-                saltList = (ArrayList<UserSalt>) fileIO.readObjects(context, saltFile);
+                saltList = (ArrayList<Salt>) fileIO.readObjects(context, saltFile);
                 byte[] salt = null;
 
-                if (!editTextEmail.getText().toString().equals(testEmail)) {
-                    userID = getUserID(userList, editTextEmail.getText().toString());
-                    if (userID != -1) {
-                        salt = saltList.get(userID).getSalt();
-                    } else {
-                        salt = testSalt;
-                    }
-                    System.out.println("########%%%########");
-                } else {
-                    salt = testSalt;
+                userID = getUserID(userList, editTextEmail.getText().toString());
+                if (userID != -1) {
+                    salt = saltList.get(userID).getSalt();
                 }
+                System.out.println("########%%%########");
+
                 System.out.println("#####" + userID + "#####");
 
 
-
-
-                // This is only for testing todo remove this
-                if ((editTextEmail.getText().toString().equals(testEmail)) &&
-                        ProtectPassword.getSecurePassword(editTextPassword.getText().toString(), salt).equals(testPassword)) {
-                    emailError.setText(null);
-                    passwordError.setText(null);
-                    System.out.println("Kirjautuminen onnistui");
-                    System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
-                    System.out.println("Salasana: " + editTextPassword.getText().toString());
-                    Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
-                    changeActivity();
-                } else if (userID == -1) {
+                if (userID == -1) {
                     emailError.setText(emailErrorMessage);
                     passwordError.setText(null);
                     System.out.println("Väärä käyttäjänimi:");
@@ -137,7 +118,7 @@ public class Login extends Fragment{
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
-                    changeActivity();
+                    changeActivity(userList.get(userID));
                 } else {
                     passwordError.setText(passwordErrorMessage);
                     emailError.setText(null);
@@ -225,8 +206,9 @@ public class Login extends Fragment{
         return -1;
     }
 
-    public void changeActivity() {
+    public void changeActivity(User user) {
         Intent intent = new Intent(getActivity(), FragmentController.class);
+        intent.putExtra("User", user);
         startActivity(intent);
     }
 }
