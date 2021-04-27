@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,10 +31,14 @@ public class MealLog extends Fragment {
     //private LineChart chart;
 
     ArrayList<Meal> mealList = new ArrayList<>();
-    private MealLog() {}
+
+    private MealLog() {
+    }
+
     public static MealLog getInstance() {
         return mealLog;
     }
+
     FileIO fileIO = FileIO.getInstance();
 
     @Nullable
@@ -45,16 +50,16 @@ public class MealLog extends Fragment {
         TextView textLog = view.findViewById(R.id.textViewLog);
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
         mealList = (ArrayList<Meal>) fileIO.readObjects(context, "mealList.ser");
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         textLog.setText("Date ; co2amount\n");
-        for (Meal meal : mealList){
-            textLog.append(meal.getDate() + " ; " + meal.getCo2amount()+"\n");
+        for (Meal meal : mealList) {
+            textLog.append(dateFormat.format(meal.getDate()) + " ; " + meal.getCo2amount() + "\n");
 
         }
 
         List<Entry> entries = new ArrayList<Entry>();
-        int i=0;
-        for (Meal data : mealList){
+        int i = 0;
+        for (Meal data : mealList) {
             i++;
             entries.add(new Entry(i, (float) data.getCo2amount()));
             System.out.println(i);
