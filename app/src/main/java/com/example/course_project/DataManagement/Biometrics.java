@@ -5,17 +5,17 @@ import java.util.Date;
 
 public class Biometrics implements Serializable {
 
-    private double height;
+    private int height;
     private double weight;
     private double bmi;
     private Date date;
     //Constructor for entry
-     public Biometrics(double height, double weight){
+     public Biometrics(int height, double weight){
          date = new Date();
          bmi = (weight/(height*height));
          this.height = height;
          this.weight = weight;
-         System.out.println(bmi); //TODO exist for test purposes
+         System.out.println(bmi);
      }
 
     public Date getDate() {return date;}

@@ -118,6 +118,8 @@ public class Login extends Fragment {
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
+                    editTextEmail.setText(null);
+                    editTextPassword.setText(null);
                     changeActivity(userList.get(userID));
                 } else {
                     passwordError.setText(passwordErrorMessage);
@@ -156,9 +158,6 @@ public class Login extends Fragment {
         printUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //userList = fileIO.getUsers(context);
-
-                //possible way to read
                 userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
 
                 int i = 0;

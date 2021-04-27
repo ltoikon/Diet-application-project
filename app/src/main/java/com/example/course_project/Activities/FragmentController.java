@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -108,8 +107,9 @@ public class FragmentController extends AppCompatActivity implements NavigationV
     }
 
     public void changeActivity() {
-        Intent intent = new Intent(this, StartAppFragmentController.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, StartAppFragmentController.class);
+        //startActivity(intent);
+        finish();
     }
 
     private void sendUserDataToFragment(User user, Fragment frag) {

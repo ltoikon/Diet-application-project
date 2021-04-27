@@ -2,6 +2,7 @@ package com.example.course_project.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ConsumptionLog extends Fragment {
     static ConsumptionLog consumptionLog = new ConsumptionLog();
-
-    //private TextView textLog;
-    //private LineChart chart;
 
     ArrayList<Consumption> consumptionList = new ArrayList<>();
 
@@ -44,13 +43,14 @@ public class ConsumptionLog extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
+        View view = inflater.inflate(R.layout.fragment_consumption_log, container, false);
         Context context = getActivity().getApplicationContext();
 
         User profile = (User) getArguments().getSerializable("User");
         String fileName = profile.getFirstName() + profile.getLastName() + "MealList.ser";
 
         TextView textLog = view.findViewById(R.id.textViewLog);
+        textLog.setMovementMethod(new ScrollingMovementMethod());
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
         consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
 

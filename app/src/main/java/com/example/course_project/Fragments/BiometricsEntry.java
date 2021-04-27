@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,11 +26,16 @@ public class BiometricsEntry extends Fragment {
     private Button bSubmit;
 
     private EditText editTextHeight, editTextWeight;
+    private TextView editTextHeightError, editTextWeightError;
     private String entryHeight, entryWeight;
-    private double doubleHeight, doubleWeight;
+    private double doubleWeight;
+    private int iHeight;
 
     ArrayList<Biometrics> biometricsList = new ArrayList<>();
     FileIO fileIO = FileIO.getInstance();
+
+    private String errorMessage = "This text field must not be blank.";
+    private String heightError = "Height is not an integer.";
 
     private BiometricsEntry() {
     }
@@ -41,38 +47,52 @@ public class BiometricsEntry extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_person_info_entry, container, false);
+        View view = inflater.inflate(R.layout.fragment_biometrics_entry, container, false);
         Context context = getActivity().getApplicationContext();
 
         User profile = (User) getArguments().getSerializable("User");
 
         editTextHeight = view.findViewById(R.id.inputHeight);
         editTextWeight = view.findViewById(R.id.inputWeight);
+        editTextHeightError = view.findViewById(R.id.heightError);
+        editTextWeightError = view.findViewById(R.id.weightError);
+
         bSubmit = view.findViewById(R.id.buttonSubmit);
 
         bSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int errorCount = 0;
+                if (editTextHeight.getText().toString().length() == 0) {
+                    editTextHeightError.setText(errorMessage);
+                    errorCount++;
+                } else if ((editTextHeight.getText().toString().contains(".")) ||
+                        (editTextHeight.getText().toString().contains(","))) {
+                    editTextWeight.setText(heightError);
+                    errorCount++;
+                }
 
-                entryHeight = editTextHeight.getText().toString();
-                entryWeight = editTextWeight.getText().toString();
+                if (editTextWeight.getText().toString().length() == 0) {
+                    editTextWeightError.setText(errorMessage);
+                    errorCount++;
+                }
 
-                //TODO required entries, error message
+                if (errorCount == 0) {
+                    iHeight = Integer.getInteger(entryHeight);
+                    doubleWeight = Double.parseDouble(entryWeight);
 
-                doubleHeight = Double.parseDouble(entryHeight);
-                doubleWeight = Double.parseDouble(entryWeight);
+                    Biometrics biometrics = new Biometrics(iHeight, doubleWeight);
 
-                Biometrics biometrics = new Biometrics(doubleHeight, doubleWeight);
+                    String fileName = profile.getFirstName() + profile.getLastName() + "BiometricsList.ser";
 
-                String fileName = profile.getFirstName() + profile.getLastName() + "BiometricsList.ser";
+                    biometricsList = (ArrayList<Biometrics>) fileIO.readObjects(context, fileName);
+                    biometricsList.add(biometrics);
+                    fileIO.writeObjects(context, fileName, biometricsList);
 
-                biometricsList = (ArrayList<Biometrics>) fileIO.readObjects(context, fileName);
-                biometricsList.add(biometrics);
-                fileIO.writeObjects(context, fileName, biometricsList);
-
-                editTextHeight.setText(null);
-                editTextWeight.setText(null);
-                Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
+                    editTextHeight.setText(null);
+                    editTextWeight.setText(null);
+                    Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
