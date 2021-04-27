@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.Meal;
-import com.example.course_project.DataManagement.PersonInfo;
+import com.example.course_project.DataManagement.Consumption;
+import com.example.course_project.DataManagement.User;
 import com.example.course_project.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -24,41 +24,47 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonInfoLog extends Fragment {
-    static PersonInfoLog personInfoLog = new PersonInfoLog();
+public class ConsumptionLog extends Fragment {
+    static ConsumptionLog consumptionLog = new ConsumptionLog();
 
-    private PersonInfoLog() {
+    //private TextView textLog;
+    //private LineChart chart;
+
+    ArrayList<Consumption> consumptionList = new ArrayList<>();
+
+    private ConsumptionLog() {
     }
 
-    public static PersonInfoLog getInstance() {
-        return personInfoLog;
+    public static ConsumptionLog getInstance() {
+        return consumptionLog;
     }
 
-    private TextView textLog;
-    private LineChart chart;
-    ArrayList<PersonInfo> personInfoList = new ArrayList<>();
     FileIO fileIO = FileIO.getInstance();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_person_info_log, container, false);
+        View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
         Context context = getActivity().getApplicationContext();
 
-        textLog = view.findViewById(R.id.textViewLog);
-        chart = (LineChart) view.findViewById(R.id.chart);
-        personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        textLog.setText("Date ; Weight ; BMI\n");
-        for (PersonInfo personInfo : personInfoList) {
-            textLog.append(dateFormat.format(personInfo.getDate()) + " ; " + personInfo.getWeight() + " ; " + personInfo.getBmi() + "\n");
+        User profile = (User) getArguments().getSerializable("User");
+        String fileName = profile.getFirstName() + profile.getLastName() + "MealList.ser";
+
+        TextView textLog = view.findViewById(R.id.textViewLog);
+        LineChart chart = (LineChart) view.findViewById(R.id.chart);
+        consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
+
+        textLog.setText("Date ; co2amount\n");
+        for (Consumption consumption : consumptionList) {
+            textLog.append(consumption.getDate() + " ; " + consumption.getCo2amount() + "\n");
+
         }
 
         List<Entry> entries = new ArrayList<Entry>();
         int i = 0;
-        for (PersonInfo data : personInfoList) {
+        for (Consumption data : consumptionList) {
             i++;
-            entries.add(new Entry(i, (float) data.getWeight()));
+            entries.add(new Entry(i, (float) data.getCo2amount()));
             System.out.println(i);
         }
 

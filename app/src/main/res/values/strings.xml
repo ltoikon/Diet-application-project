@@ -39,8 +39,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="log_out">Log Out</string>
     <string name="profile">Profile //this can be changed</string>
-    <string name="mealEntry">Meal Entry</string>
-    <string name="meal_log">Meal Log</string>
-    <string name="weight_log">Weight Log</string>
-    <string name="entry_weight">Update Weight And Height</string>
+    <string name="ConsumptionEntry">Enter Consumption</string>
+    <string name="consumption_log">Consumption Log</string>
+    <string name="biometrics_log">Biometrics Log</string>
+    <string name="update_biometrics">Update Biometrics</string>
 </resources>

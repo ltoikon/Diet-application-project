@@ -13,13 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.PersonInfo;
+import com.example.course_project.DataManagement.Biometrics;
+import com.example.course_project.DataManagement.User;
 import com.example.course_project.R;
 
 import java.util.ArrayList;
 
-public class PersonInfoEntry extends Fragment {
-    static PersonInfoEntry personInfoEntry = new PersonInfoEntry();
+public class BiometricsEntry extends Fragment {
+    static BiometricsEntry biometricsEntry = new BiometricsEntry();
 
     private Button bSubmit;
 
@@ -27,11 +28,15 @@ public class PersonInfoEntry extends Fragment {
     private String entryHeight, entryWeight;
     private double doubleHeight, doubleWeight;
 
-    ArrayList<PersonInfo> personInfoList = new ArrayList<>();
+    ArrayList<Biometrics> biometricsList = new ArrayList<>();
     FileIO fileIO = FileIO.getInstance();
-    private PersonInfoEntry() {}
 
-    public static PersonInfoEntry getInstance(){return personInfoEntry;}
+    private BiometricsEntry() {
+    }
+
+    public static BiometricsEntry getInstance() {
+        return biometricsEntry;
+    }
 
     @Nullable
     @Override
@@ -39,11 +44,13 @@ public class PersonInfoEntry extends Fragment {
         View view = inflater.inflate(R.layout.fragment_person_info_entry, container, false);
         Context context = getActivity().getApplicationContext();
 
+        User profile = (User) getArguments().getSerializable("User");
+
         editTextHeight = view.findViewById(R.id.inputHeight);
         editTextWeight = view.findViewById(R.id.inputWeight);
         bSubmit = view.findViewById(R.id.buttonSubmit);
 
-        bSubmit.setOnClickListener(new View.OnClickListener(){
+        bSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -55,22 +62,19 @@ public class PersonInfoEntry extends Fragment {
                 doubleHeight = Double.parseDouble(entryHeight);
                 doubleWeight = Double.parseDouble(entryWeight);
 
-                PersonInfo personInfo = new PersonInfo(doubleHeight, doubleWeight);
-                /*if (personInfoList.size() == 0) {
-                    personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
-                }*/
+                Biometrics biometrics = new Biometrics(doubleHeight, doubleWeight);
 
-                personInfoList = (ArrayList<PersonInfo>) fileIO.readObjects(context, "personInfoList.ser");
-                personInfoList.add(personInfo);
-                fileIO.writeObjects(context,"personInfoList.ser", personInfoList);
+                String fileName = profile.getFirstName() + profile.getLastName() + "BiometricsList.ser";
+
+                biometricsList = (ArrayList<Biometrics>) fileIO.readObjects(context, fileName);
+                biometricsList.add(biometrics);
+                fileIO.writeObjects(context, fileName, biometricsList);
 
                 editTextHeight.setText(null);
                 editTextWeight.setText(null);
                 Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
-
             }
         });
-
         return view;
     }
 }

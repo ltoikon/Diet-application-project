@@ -14,10 +14,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.course_project.Fragments.MealEntry;
-import com.example.course_project.Fragments.MealLog;
-import com.example.course_project.Fragments.PersonInfoEntry;
-import com.example.course_project.Fragments.PersonInfoLog;
+import com.example.course_project.DataManagement.User;
+import com.example.course_project.Fragments.ConsumptionEntry;
+import com.example.course_project.Fragments.ConsumptionLog;
+import com.example.course_project.Fragments.BiometricsEntry;
+import com.example.course_project.Fragments.BiometricsLog;
 import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -43,22 +44,47 @@ public class FragmentController extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            System.out.println("Vaihtuu mealEntry-fragmenttiin");
-            Fragment mealEntry = MealEntry.getInstance();
+            User user = (User) getIntent().getSerializableExtra("User");
+            System.out.println("Changing to Consumption Entry");
+            Fragment mealEntry = ConsumptionEntry.getInstance();
+            sendUserDataToFragment(user, mealEntry);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, mealEntry).commit();
-            navigationView.setCheckedItem(R.id.nav_mealEntry);
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        User user = (User) getIntent().getSerializableExtra("User");
+
         switch (item.getItemId()) {
-            case (R.id.nav_mealEntry):
-                System.out.println("Vaihtuu mealEntry-fragmenttiin");
-                Fragment mealEntry = MealEntry.getInstance();
+            case (R.id.nav_consumptionEntry):
+                System.out.println("Changing to Consumption Entry");
+                Fragment mealEntry = ConsumptionEntry.getInstance();
+                sendUserDataToFragment(user, mealEntry);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, mealEntry).commit();
+                break;
+            case (R.id.nav_biometrics_entry):
+                System.out.println("Changing to Biometrics Entry");
+                Fragment personInfoEntry = BiometricsEntry.getInstance();
+                sendUserDataToFragment(user, personInfoEntry);
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, personInfoEntry).commit();
+                break;
+            case (R.id.nav_consumption_log):
+                System.out.println("Changing to Consumption Log");
+                Fragment mealLog = ConsumptionLog.getInstance();
+                sendUserDataToFragment(user, mealLog);
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, mealLog).commit();
+                break;
+            case (R.id.nav_biometrics_log):
+                System.out.println("Changing to Biometrics Log");
+                Fragment personInfoLog = BiometricsLog.getInstance();
+                sendUserDataToFragment(user, personInfoLog);
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, personInfoLog).commit();
                 break;
             case (R.id.nav_logOff):
                 Toast.makeText(this, "Change to Chat fragment", Toast.LENGTH_SHORT).show();
@@ -66,24 +92,6 @@ public class FragmentController extends AppCompatActivity implements NavigationV
                 break;
             case (R.id.nav_profile):
                 Toast.makeText(this, "Change to Profile fragment", Toast.LENGTH_SHORT).show();
-                break;
-            case (R.id.nav_meal_log):
-                Toast.makeText(this, "Meal log", Toast.LENGTH_SHORT).show();
-                Fragment mealLog = MealLog.getInstance();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, mealLog).commit();
-                break;
-            case (R.id.nav_weight_log):
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
-                Fragment personInfoLog = PersonInfoLog.getInstance();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, personInfoLog).commit();
-                break;
-            case (R.id.nav_weightAndHeight):
-                Toast.makeText(this, "Weight entry", Toast.LENGTH_SHORT).show();
-                Fragment personInfoEntry = PersonInfoEntry.getInstance();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, personInfoEntry).commit();
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -102,5 +110,12 @@ public class FragmentController extends AppCompatActivity implements NavigationV
     public void changeActivity() {
         Intent intent = new Intent(this, StartAppFragmentController.class);
         startActivity(intent);
+    }
+
+    private void sendUserDataToFragment(User user, Fragment frag) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("User", user);
+        frag.setArguments(bundle);
+        System.out.println("#######################" + bundle.getSerializable("User") + "#######################");
     }
 }

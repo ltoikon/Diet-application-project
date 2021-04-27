@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.example.course_project.DataManagement.FileIO;
 import com.example.course_project.DataManagement.ProtectPassword;
 import com.example.course_project.DataManagement.User;
-import com.example.course_project.DataManagement.UserSalt;
+import com.example.course_project.DataManagement.Salt;
 import com.example.course_project.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 
@@ -58,7 +58,7 @@ public class SignUp extends Fragment {
     private String saltFile = "salt.ser";
 
     ArrayList<User> userList = new ArrayList<>();
-    ArrayList<UserSalt> saltList = new ArrayList<>();
+    ArrayList<Salt> saltList = new ArrayList<>();
 
     FileIO fileIO = FileIO.getInstance();
 
@@ -191,7 +191,7 @@ public class SignUp extends Fragment {
                     User user = new User(email, hashedPassword, firstName, lastName, birthDate, homeTown);
                     userList.add(user);
 
-                    UserSalt saltUser = new UserSalt(email, salt);
+                    Salt saltUser = new Salt(salt);
                     saltList.add(saltUser);
 
                     FileIO fileIO = FileIO.getInstance();

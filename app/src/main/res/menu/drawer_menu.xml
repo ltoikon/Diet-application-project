@@ -5,24 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_mealEntry"
+            android:id="@+id/nav_consumptionEntry"
             android:icon="@drawable/ic_meal"
-            android:title="@string/mealEntry" />
+            android:title="@string/ConsumptionEntry" />
         <item
-            android:id="@+id/nav_weightAndHeight"
-            android:title="@string/entry_weight"
+            android:id="@+id/nav_biometrics_entry"
+            android:title="@string/update_biometrics"
             android:icon="@drawable/ic_person"/>
+        <item
+            android:id="@+id/nav_consumption_log"
+            android:icon="@drawable/ic_chart"
+            android:title="@string/consumption_log" />
+        <item
+            android:id="@+id/nav_biometrics_log"
+            android:icon="@drawable/ic_chart"
+            android:title="@string/biometrics_log" />
         <item
             android:id="@+id/nav_profile"
             android:title="@string/profile" />
-        <item
-            android:id="@+id/nav_meal_log"
-            android:icon="@drawable/ic_chart"
-            android:title="@string/meal_log" />
-        <item
-            android:id="@+id/nav_weight_log"
-            android:icon="@drawable/ic_chart"
-            android:title="@string/weight_log" />
     </group>
 
     <item android:title="Settings">
