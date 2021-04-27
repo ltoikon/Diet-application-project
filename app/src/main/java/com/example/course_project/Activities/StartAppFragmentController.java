@@ -19,11 +19,15 @@ public class StartAppFragmentController extends AppCompatActivity implements OnF
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prelogin);
 
-        changeFragment(0);
-
         /*Needed for internet*/
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        changeFragment(0);
     }
 
     @Override

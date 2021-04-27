@@ -118,6 +118,8 @@ public class Login extends Fragment {
                     System.out.println("Käyttäjänimi: " + editTextEmail.getText().toString());
                     System.out.println("Salasana: " + editTextPassword.getText().toString());
                     Toast.makeText(getActivity(), "Kirjautuminen onnistui!", Toast.LENGTH_SHORT).show();
+                    editTextEmail.setText(null);
+                    editTextPassword.setText(null);
                     changeActivity(userList.get(userID));
                 } else {
                     passwordError.setText(passwordErrorMessage);
