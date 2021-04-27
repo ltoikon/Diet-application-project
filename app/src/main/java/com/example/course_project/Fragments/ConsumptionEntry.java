@@ -36,7 +36,6 @@ public class ConsumptionEntry extends Fragment {
             intRice, intEgg, intWinterSalad;
 
     ArrayList<Consumption> consumptionList = new ArrayList<>();
-    private OnFragmentInteractionListener mListener; //todo saako poistaa?
     FileIO fileIO = FileIO.getInstance();
 
     private ConsumptionEntry() {
@@ -46,15 +45,16 @@ public class ConsumptionEntry extends Fragment {
         return consumptionEntry;
     }
 
-    //private String timing = "Timing";
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_meal_entry, container, false);
+        View view = inflater.inflate(R.layout.fragment_consumption_entry, container, false);
         Context context = getActivity().getApplicationContext();
 
         User profile = (User) getArguments().getSerializable("User");
+
+        //TODO timing-muuttujalle joku konkreettinen ominaisuus tai poisto
+
 
         editTextTiming = view.findViewById(R.id.inputTiming);
         editTextPork = view.findViewById(R.id.inputPork);

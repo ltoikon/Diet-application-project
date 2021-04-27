@@ -106,7 +106,6 @@ public class SignUp extends Fragment {
             public void onClick(View v) {
                 int errorCount = 0;
 
-                //todo make all of the error messages to appear instead of only one (only if we don't run out of time)
                 if (!validateEmail()) {
                     emailError.setText(emailErrorMessage1);
                     errorCount++;

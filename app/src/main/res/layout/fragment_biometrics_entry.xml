@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
+
+    <TextView
+        android:id="@+id/textHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/height"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/inputHeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/inputHeight" />
+
+    <TextView
+        android:id="@+id/textWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/inputWeight"
+        app:layout_constraintEnd_toEndOf="@+id/textHeight"
+        app:layout_constraintStart_toStartOf="@+id/textHeight"
+        app:layout_constraintTop_toTopOf="@+id/inputWeight" />
+
+    <EditText
+        android:id="@+id/inputWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="@string/kilograms"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/inputHeight"
+        app:layout_constraintEnd_toEndOf="@+id/inputHeight"
+        app:layout_constraintStart_toStartOf="@+id/inputHeight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginBottom="250dp"
+        android:ems="10"
+        android:hint="@string/centimeters"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/weightError"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputWeight"
+        app:layout_constraintStart_toStartOf="@+id/inputWeight"
+        app:layout_constraintTop_toBottomOf="@+id/inputWeight" />
+
+    <TextView
+        android:id="@+id/heightError"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/inputHeight"
+        app:layout_constraintStart_toStartOf="@+id/inputHeight"
+        app:layout_constraintTop_toBottomOf="@+id/inputHeight" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

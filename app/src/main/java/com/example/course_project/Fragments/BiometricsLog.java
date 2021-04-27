@@ -2,6 +2,7 @@ package com.example.course_project.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class BiometricsLog extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_person_info_log, container, false);
+        View view = inflater.inflate(R.layout.fragment_biometrics_log, container, false);
         Context context = getActivity().getApplicationContext();
 
         User profile = (User) getArguments().getSerializable("User");
@@ -50,6 +51,8 @@ public class BiometricsLog extends Fragment {
         textLog = view.findViewById(R.id.textViewLog);
         chart = (LineChart) view.findViewById(R.id.chart);
         biometricsList = (ArrayList<Biometrics>) fileIO.readObjects(context, fileName);
+
+        textLog.setMovementMethod(new ScrollingMovementMethod());
 
         textLog.setText("Date ; Weight ; BMI\n");
         for (Biometrics biometrics : biometricsList) {

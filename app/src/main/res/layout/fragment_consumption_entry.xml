@@ -9,179 +9,210 @@
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEggs" />
 
     <EditText
         android:id="@+id/inputTiming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/timing"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/inputPork"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputEggs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="184dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="380dp"
         android:ems="10"
         android:hint="@string/pieces"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputRice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputWinterSalad"
+        app:layout_constraintEnd_toEndOf="@+id/inputWinterSalad"
         app:layout_constraintStart_toStartOf="@+id/inputWinterSalad" />
 
     <EditText
         android:id="@+id/inputWinterSalad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputEggs"
+        app:layout_constraintEnd_toEndOf="@+id/inputEggs"
         app:layout_constraintStart_toStartOf="@+id/inputEggs" />
 
     <EditText
         android:id="@+id/inputCheese"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputRice"
+        app:layout_constraintEnd_toEndOf="@+id/inputRice"
         app:layout_constraintStart_toStartOf="@+id/inputRice" />
 
     <EditText
         android:id="@+id/inputDairy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputCheese"
+        app:layout_constraintEnd_toEndOf="@+id/inputCheese"
         app:layout_constraintStart_toStartOf="@+id/inputCheese" />
 
     <EditText
         android:id="@+id/inputFish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputDairy"
+        app:layout_constraintEnd_toEndOf="@+id/inputDairy"
         app:layout_constraintStart_toStartOf="@+id/inputDairy" />
 
     <EditText
         android:id="@+id/inputBeef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputFish"
+        app:layout_constraintEnd_toEndOf="@+id/inputFish"
         app:layout_constraintStart_toStartOf="@+id/inputFish" />
 
     <EditText
         android:id="@+id/inputPork"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="@string/grams"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/inputBeef"
+        app:layout_constraintEnd_toEndOf="@+id/inputBeef"
         app:layout_constraintStart_toStartOf="@+id/inputBeef" />
 
     <TextView
         android:id="@+id/textPork"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:text="@string/pork"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputPork"
-        app:layout_constraintStart_toStartOf="@+id/textBeef" />
+        app:layout_constraintEnd_toEndOf="@+id/textBeef"
+        app:layout_constraintStart_toStartOf="@+id/textBeef"
+        app:layout_constraintTop_toTopOf="@+id/inputPork" />
 
     <TextView
         android:id="@+id/textEggs"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="200dp"
         android:text="@string/eggs"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputEggs"
-        app:layout_constraintEnd_toStartOf="@+id/inputEggs"
-        app:layout_constraintHorizontal_bias="0.103"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/inputEggs" />
 
     <TextView
         android:id="@+id/textWinterSalad"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:text="@string/winterSalad"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputWinterSalad"
-        app:layout_constraintStart_toStartOf="@+id/textEggs" />
+        app:layout_constraintEnd_toEndOf="@+id/textEggs"
+        app:layout_constraintStart_toStartOf="@+id/textEggs"
+        app:layout_constraintTop_toTopOf="@+id/inputWinterSalad" />
 
     <TextView
         android:id="@+id/textRice"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/rice"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputRice"
-        app:layout_constraintStart_toStartOf="@+id/textWinterSalad" />
+        app:layout_constraintEnd_toEndOf="@+id/textWinterSalad"
+        app:layout_constraintStart_toStartOf="@+id/textWinterSalad"
+        app:layout_constraintTop_toTopOf="@+id/inputRice" />
 
     <TextView
         android:id="@+id/textCheese"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/cheese"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputCheese"
-        app:layout_constraintStart_toStartOf="@+id/textRice" />
+        app:layout_constraintEnd_toEndOf="@+id/textRice"
+        app:layout_constraintStart_toStartOf="@+id/textRice"
+        app:layout_constraintTop_toTopOf="@+id/inputCheese" />
 
     <TextView
         android:id="@+id/textDairy"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/dairy"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputDairy"
-        app:layout_constraintStart_toStartOf="@+id/textCheese" />
+        app:layout_constraintEnd_toEndOf="@+id/textCheese"
+        app:layout_constraintStart_toStartOf="@+id/textCheese"
+        app:layout_constraintTop_toTopOf="@+id/inputDairy" />
 
     <TextView
         android:id="@+id/textFish"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/fish"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputFish"
-        app:layout_constraintStart_toStartOf="@+id/textDairy" />
+        app:layout_constraintEnd_toEndOf="@+id/textDairy"
+        app:layout_constraintStart_toStartOf="@+id/textDairy"
+        app:layout_constraintTop_toTopOf="@+id/inputFish" />
 
     <TextView
         android:id="@+id/textBeef"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/beef"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputBeef"
-        app:layout_constraintStart_toStartOf="@+id/textFish" />
+        app:layout_constraintEnd_toEndOf="@+id/textFish"
+        app:layout_constraintStart_toStartOf="@+id/textFish"
+        app:layout_constraintTop_toTopOf="@+id/inputBeef" />
 </androidx.constraintlayout.widget.ConstraintLayout>

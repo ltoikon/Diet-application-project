@@ -158,9 +158,6 @@ public class Login extends Fragment {
         printUserList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //userList = fileIO.getUsers(context);
-
-                //possible way to read
                 userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
 
                 int i = 0;
