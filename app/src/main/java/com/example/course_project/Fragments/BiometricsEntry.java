@@ -72,13 +72,10 @@ public class BiometricsEntry extends Fragment {
                     errorCount++;
                 }
 
-                if (editTextWeight.getText().toString().length() == 0) {
-                    editTextWeightError.setText(errorMessage);
-                    errorCount++;
-                }
-
                 if (errorCount == 0) {
-                    iHeight = Integer.getInteger(entryHeight);
+                    entryHeight = editTextHeight.getText().toString();
+                    entryWeight = editTextWeight.getText().toString();
+                    iHeight = Integer.parseInt(entryHeight);
                     doubleWeight = Double.parseDouble(entryWeight);
 
                     Biometrics biometrics = new Biometrics(iHeight, doubleWeight);

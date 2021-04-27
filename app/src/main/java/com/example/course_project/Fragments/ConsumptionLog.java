@@ -53,10 +53,10 @@ public class ConsumptionLog extends Fragment {
         textLog.setMovementMethod(new ScrollingMovementMethod());
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
         consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
-
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         textLog.setText("Date ; co2amount\n");
         for (Consumption consumption : consumptionList) {
-            textLog.append(consumption.getDate() + " ; " + consumption.getCo2amount() + "\n");
+            textLog.append(dateFormat.format(consumption.getDate()) + " ; " + consumption.getCo2amount() + "\n");
 
         }
 
