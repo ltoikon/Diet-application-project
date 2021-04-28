@@ -47,7 +47,7 @@ public class ClimateDietAPI {
         return co2;
     }
 
-    public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad) {
+    private String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad) {
         double doublePork = ((double) pork / avePork) * 100;
         double doubleFish = ((double) fish / aveFish) * 100;
         double doubleBeef = ((double) beef / aveBeef) * 100;
@@ -78,7 +78,7 @@ public class ClimateDietAPI {
     }
 
     /* Takes url (from the method above) as parameter and return the co2 emissions */
-    public String getJSON(String urlString) {
+    private String getJSON(String urlString) {
         String response = null;
         try {
             URL url = new URL(urlString);
