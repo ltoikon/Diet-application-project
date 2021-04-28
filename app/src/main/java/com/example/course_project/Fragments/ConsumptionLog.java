@@ -56,10 +56,8 @@ public class ConsumptionLog extends Fragment {
         consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String sDate = "Date", sCo2Amount = "CO2eq";
-        //textLog.setText("Date ; co2amount\n");
         textLog.setText(String.format("%-26s %-5s\n", sDate, sCo2Amount));
         for (Consumption consumption : consumptionList) {
-            //textLog.append(dateFormat.format(consumption.getDate()) + " ; " + String.format("%.1f", consumption.getCo2amount()) + "\n");
             textLog.append(String.format("%-20s %-5.1f\n",
                                 dateFormat.format(consumption.getDate()), consumption.getCo2amount()));
         }
@@ -74,8 +72,6 @@ public class ConsumptionLog extends Fragment {
 
         LineDataSet dataSet = new LineDataSet(entries, "Weight");
         LineData lineData = new LineData(dataSet);
-        //dataSet.setColor(...);
-        //dataSet.setValueTextColor(...);
         chart.setData(lineData);
         chart.invalidate();
 

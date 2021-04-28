@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 
 public class ProtectPassword {
 
+    /* Takes given password and salt as parameters and creates hashed and salted password */
     public static String getSecurePassword(String password, byte[] salt) {
         String newPassword = null;
         try {

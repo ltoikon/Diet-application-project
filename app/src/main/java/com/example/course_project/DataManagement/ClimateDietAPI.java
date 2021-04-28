@@ -28,7 +28,9 @@ public class ClimateDietAPI {
     public ClimateDietAPI() {
     }
 
-    public double calculate(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
+
+    /* Takes input values and changes them into percents. Return co2 emissions */
+    public double calculate(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad) {
         String urlAPI = formingUrl(pork, fish, beef, dairy, cheese, rice, egg, winterSalad);
         String json = getJSON(urlAPI);
 
@@ -41,18 +43,18 @@ public class ClimateDietAPI {
                 e.printStackTrace();
             }
         }
-        co2 = co2/52; // conversion to co2eq per input
+        co2 = co2 / 52; // conversion to co2eq per input
         return co2;
     }
 
-    public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
-        double doublePork = ((double) pork / avePork)*100;
-        double doubleFish = ((double) fish /aveFish)*100;
-        double doubleBeef = ((double) beef /aveBeef)*100;
-        double doubleDairy = ((double) dairy /aveDairy)*100;
-        double doubleCheese = ((double) cheese /aveCheese)*100;
-        double doubleRice = ((double) rice /aveRice)*100;
-        double doubleWinterSalad = ((double) winterSalad /aveWinterSalad)*100;
+    public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad) {
+        double doublePork = ((double) pork / avePork) * 100;
+        double doubleFish = ((double) fish / aveFish) * 100;
+        double doubleBeef = ((double) beef / aveBeef) * 100;
+        double doubleDairy = ((double) dairy / aveDairy) * 100;
+        double doubleCheese = ((double) cheese / aveCheese) * 100;
+        double doubleRice = ((double) rice / aveRice) * 100;
+        double doubleWinterSalad = ((double) winterSalad / aveWinterSalad) * 100;
 
         pork = (int) Math.round(doublePork);
         fish = (int) Math.round(doubleFish);
@@ -64,20 +66,19 @@ public class ClimateDietAPI {
 
         String url = "https://ilmastodieetti.ymparisto.fi/ilmastodieetti/"
                 + "calculatorapi/v1/FoodCalculator?query.diet=omnivore&query.beefLevel=" + beef +
-                "&query.fishLevel="+ fish +
+                "&query.fishLevel=" + fish +
                 "&query.porkPoultryLevel=" + pork +
                 "&query.dairyLevel=" + dairy +
-                "&query.cheeseLevel="+ cheese +
-                "&query.riceLevel="+ rice +
-                "&query.eggLevel="+ egg +
-                "&query.winterSaladLevel="+ winterSalad;
+                "&query.cheeseLevel=" + cheese +
+                "&query.riceLevel=" + rice +
+                "&query.eggLevel=" + egg +
+                "&query.winterSaladLevel=" + winterSalad;
         System.out.println(url);
         return url;
     }
 
-
-    /*method for pulling JSON*/
-    public String getJSON(String urlString){
+    /* Takes url (from the method above) as parameter and return the co2 emissions */
+    public String getJSON(String urlString) {
         String response = null;
         try {
             URL url = new URL(urlString);
@@ -95,7 +96,6 @@ public class ClimateDietAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return response;
     }
 }

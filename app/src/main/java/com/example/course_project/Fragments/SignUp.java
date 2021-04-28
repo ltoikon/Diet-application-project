@@ -106,8 +106,10 @@ public class SignUp extends Fragment {
         bSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int errorCount = 0;
 
+                /* Checks if there are any errors on the text fields and if there are, the code
+                 *  announces them */
+                int errorCount = 0;
                 if (!validateEmail()) {
                     emailError.setText(emailErrorMessage1);
                     errorCount++;
@@ -215,6 +217,9 @@ public class SignUp extends Fragment {
         bShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /* Switches between showed password and hidden password text and puts the cursor
+                 *  at the end of the text field */
                 if (showing) {
                     editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     editTextPassword.setSelection(editTextPassword.getText().length());
@@ -230,6 +235,9 @@ public class SignUp extends Fragment {
         bShowConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /* Switches between showed password and hidden password text and puts the cursor
+                 *  at the end of the text field */
                 if (showingConfirm) {
                     editTextConfirmPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     editTextConfirmPassword.setSelection(editTextConfirmPassword.getText().length());
@@ -278,7 +286,7 @@ public class SignUp extends Fragment {
         return false;
     }
 
-    // Validates the chosen date as a real date includin leap years etc.
+    // Validates the chosen date as a real date including leap years etc.
     private boolean validateBirthDate() {
         Pattern pattern;
         Matcher matcher;

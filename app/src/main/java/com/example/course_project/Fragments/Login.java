@@ -131,6 +131,9 @@ public class Login extends Fragment {
         bShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /* Switches between showed password and hidden password text and puts the cursor
+                *  at the end of the text field */
                 if (showing) {
                     editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     editTextPassword.setSelection(editTextPassword.getText().length());

@@ -6,12 +6,10 @@ import java.util.Date;
 public class Consumption implements Serializable {
     private Date date;
     private int pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
-    private String timing;
     private double co2amount; //value fetched from API
 
-
-    /*constructor*/
-    public Consumption(int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad, String timing) {
+    /* Takes input data as parameters */
+    public Consumption(int pork, int beef, int fish, int dairy, int cheese, int rice, int egg, int winterSalad) {
         date = new Date();
         this.pork = pork;
         this.fish = fish;
@@ -21,13 +19,11 @@ public class Consumption implements Serializable {
         this.rice = rice;
         this.egg = egg;
         this.winterSalad = winterSalad;
-        this.timing = timing;
         co2amount = fetchClimateDiet();
         System.out.println("****************" + co2amount);
-
     }
 
-    /*co2 amount using food ingredient info*/
+    /* Calucates and returns the co2 emissions of the given inputs */
     public double fetchClimateDiet() {
         double result;
         ClimateDietAPI climateDiet = new ClimateDietAPI(); //alternative would be giving here food values

@@ -61,9 +61,7 @@ public class BiometricsLog extends Fragment {
         for (Biometrics biometrics : biometricsList) {
             textLog.append(String.format("%-20s %-20s %-5.1f\n",
                     dateFormat.format(biometrics.getDate()), biometrics.getWeight(), biometrics.getBmi()));
-            //textLog.append(String.format(dateFormat.format(biometrics.getDate()) + " ; " + biometrics.getWeight() + " ; " + String.format("%.1f",biometrics.getBmi()) + "\n"));
         }
-
 
         List<Entry> entries = new ArrayList<Entry>();
         int i = 0;
@@ -75,8 +73,6 @@ public class BiometricsLog extends Fragment {
 
         LineDataSet dataSet = new LineDataSet(entries, "Weight");
         LineData lineData = new LineData(dataSet);
-        //dataSet.setColor(...);
-        //dataSet.setValueTextColor(...);
         chart.setData(lineData);
         chart.invalidate();
 

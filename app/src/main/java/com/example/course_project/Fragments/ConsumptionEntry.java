@@ -25,12 +25,12 @@ public class ConsumptionEntry extends Fragment {
     static ConsumptionEntry consumptionEntry = new ConsumptionEntry();
 
     private EditText editTextPork, editTextBeef, editTextFish, editTextDairy, editTextCheese,
-            editTextRice, editTextEgg, editTextWinterSalad, editTextTiming;
+            editTextRice, editTextEgg, editTextWinterSalad;
 
     private Button bSubmit;
 
     private String entryPork, entryBeef, entryFish, entryDairy, entryCheese,
-            entryRice, entryEgg, entryWinterSalad, entryTiming;
+            entryRice, entryEgg, entryWinterSalad;
 
     private int intPork, intBeef, intFish, intDairy, intCheese,
             intRice, intEgg, intWinterSalad;
@@ -53,10 +53,6 @@ public class ConsumptionEntry extends Fragment {
 
         User profile = (User) getArguments().getSerializable("User");
 
-        //TODO timing-muuttujalle joku konkreettinen ominaisuus tai poisto
-
-
-        editTextTiming = view.findViewById(R.id.inputTiming);
         editTextPork = view.findViewById(R.id.inputPork);
         editTextBeef = view.findViewById(R.id.inputBeef);
         editTextFish = view.findViewById(R.id.inputFish);
@@ -72,7 +68,6 @@ public class ConsumptionEntry extends Fragment {
             @Override
             public void onClick(View v) {
 
-                entryTiming = editTextTiming.getText().toString();
                 entryPork = editTextPork.getText().toString();
                 entryBeef = editTextBeef.getText().toString();
                 entryFish = editTextFish.getText().toString();
@@ -82,7 +77,7 @@ public class ConsumptionEntry extends Fragment {
                 entryEgg = editTextEgg.getText().toString();
                 entryWinterSalad = editTextWinterSalad.getText().toString();
 
-                /*Prevent crashing if user leaves value empty*/
+                /*Prevents crashing if user leaves value empty*/
                 if (entryPork.length() == 0) {
                     entryPork = "0";
                 }
@@ -117,7 +112,7 @@ public class ConsumptionEntry extends Fragment {
                 intEgg = Integer.parseInt(entryEgg);
                 intWinterSalad = Integer.parseInt(entryWinterSalad);
 
-                Consumption consumption = new Consumption(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad, entryTiming);
+                Consumption consumption = new Consumption(intPork, intBeef, intFish, intDairy, intCheese, intRice, intEgg, intWinterSalad);
 
                 String fileName = profile.getFirstName() + profile.getLastName() + "MealList.ser";
 
@@ -133,7 +128,6 @@ public class ConsumptionEntry extends Fragment {
                 editTextRice.setText(null);
                 editTextEgg.setText(null);
                 editTextWinterSalad.setText(null);
-                editTextTiming.setText(null);
 
                 Toast.makeText(context, "Data saved.", Toast.LENGTH_SHORT).show();
             }

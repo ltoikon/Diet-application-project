@@ -109,8 +109,6 @@ public class FragmentController extends AppCompatActivity implements NavigationV
     }
 
     public void changeActivity() {
-        //Intent intent = new Intent(this, StartAppFragmentController.class);
-        //startActivity(intent);
         finish();
     }
 
