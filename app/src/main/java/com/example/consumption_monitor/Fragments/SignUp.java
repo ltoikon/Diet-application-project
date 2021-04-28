@@ -192,11 +192,12 @@ public class SignUp extends Fragment {
 
                     User user = new User(email, hashedPassword, firstName, lastName, birthDate, homeTown);
                     userList.add(user);
-
+                    FileIO fileIO = FileIO.getInstance();
+                    saltList = fileIO.readObjects(context, saltFile);
                     Salt saltUser = new Salt(salt);
                     saltList.add(saltUser);
 
-                    FileIO fileIO = FileIO.getInstance();
+
                     fileIO.writeObjects(context, userFile, userList);
                     fileIO.writeObjects(context, saltFile, saltList);
                     System.out.println("Rekisteröityminen onnistui!");
