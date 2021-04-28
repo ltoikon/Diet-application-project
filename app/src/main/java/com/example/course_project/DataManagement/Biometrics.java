@@ -12,7 +12,7 @@ public class Biometrics implements Serializable {
     //Constructor for entry
      public Biometrics(int height, double weight){
          date = new Date();
-         bmi = (weight/((Double.valueOf(height)/100)*(Double.valueOf(height)/100)));
+         bmi = (weight/(((double) height /100)*((double) height /100)));
          this.height = height;
          this.weight = weight;
          System.out.println(bmi);

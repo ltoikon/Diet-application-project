@@ -18,59 +18,12 @@ public class FileIO {
 
     static FileIO fileIO = new FileIO();
 
-    private String fileName;
-    ArrayList<Double> weightArray = new ArrayList<>();
-    private String row;
-
-    private InputStream ins;
-    private BufferedReader csvReader;
-    private OutputStreamWriter csvWriter;
-
     private FileIO() {}
 
     public static FileIO getInstance() {
         return fileIO;
     }
 
-    public ArrayList<Double> readFile(String inputName, Context context) throws IOException {
-        fileName = inputName;
-        try {
-            ins = context.openFileInput(fileName + ".csv");
-            csvReader = new BufferedReader(new InputStreamReader(ins));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        //open file
-        csvReader.readLine();   //skip header line
-        while ((row = csvReader.readLine()) != null){
-            String[] infoPerRow = row.split(",");
-            weightArray.add(Double.valueOf(infoPerRow[1]));
-        }
-        csvReader.close();
-        System.out.println("Reading done");
-        return weightArray;
-    }
-
-    public void writeFile(String inputName, ArrayList<Double> inputArray, Context context) throws IOException {
-        fileName = inputName;
-        String writeRow;
-        //open file
-        {
-            try {
-                csvWriter = new OutputStreamWriter(context.openFileOutput(fileName + ".csv", Context.MODE_PRIVATE));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        /*actual writing of file*/
-        csvWriter.write("Irrelevant,weightDouble,Irrelevant\n"); //header line
-        for (double input : inputArray){
-            writeRow = "0," + input + ",3\n";
-            csvWriter.append(writeRow);
-        }
-        csvWriter.close();
-        System.out.println("Writing done");
-    }
 
     /* Takes context and name of the file where data is stored as parameters. Reads the ArrayList
        inside the file and returns the ArrayList. */

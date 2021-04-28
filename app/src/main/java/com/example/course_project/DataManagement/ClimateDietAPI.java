@@ -8,8 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -17,13 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 /*using JSON on API request */
 public class ClimateDietAPI {
     private double co2;
-    private final double avePork = 1000;
-    private final double aveBeef = 400;
-    private final double aveFish = 600;
-    private final double aveCheese = 300;
-    private final double aveDairy = 3800;
-    private final double aveRice = 90;
-    private final double aveWinterSalad = 1400; // finn average grams per week,
+
     public ClimateDietAPI(){
 
     }
@@ -46,13 +38,21 @@ public class ClimateDietAPI {
     }
 
     public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
-        Double doublePork = (Double.valueOf(pork)/ avePork)*100;
-        Double doubleFish = (Double.valueOf(fish)/aveFish)*100;
-        Double doubleBeef = (Double.valueOf(beef)/aveBeef)*100;
-        Double doubleDairy = (Double.valueOf(dairy)/aveDairy)*100;
-        Double doubleCheese = (Double.valueOf(cheese)/aveCheese)*100;
-        Double doubleRice = (Double.valueOf(rice)/aveRice)*100;
-        Double doubleWinterSalad = (Double.valueOf(winterSalad)/aveWinterSalad)*100;
+        double avePork = 1000;
+        double doublePork = ((double) pork / avePork)*100;
+        double aveFish = 600;
+        double doubleFish = ((double) fish / aveFish)*100;
+        double aveBeef = 400;
+        double doubleBeef = ((double) beef / aveBeef)*100;
+        double aveDairy = 3800;
+        double doubleDairy = ((double) dairy / aveDairy)*100;
+        double aveCheese = 300;
+        double doubleCheese = ((double) cheese / aveCheese)*100;
+        double aveRice = 90;
+        double doubleRice = ((double) rice / aveRice)*100;
+        // finn average grams per week,
+        double aveWinterSalad = 1400;
+        double doubleWinterSalad = ((double) winterSalad / aveWinterSalad)*100;
 
         pork = (int) Math.round(doublePork);
         fish = (int) Math.round(doubleFish);
@@ -86,16 +86,12 @@ public class ClimateDietAPI {
             InputStream in = new BufferedInputStream(conn.getInputStream());
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             StringBuilder sb = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line).append("\n");
             }
             response = sb.toString();
             in.close(); // input stream closed
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
