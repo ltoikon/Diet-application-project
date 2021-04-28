@@ -1,4 +1,4 @@
-package com.example.course_project.Fragments;
+package com.example.consumption_monitor.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.Biometrics;
-import com.example.course_project.DataManagement.User;
+import com.example.consumption_monitor.DataManagement.FileIO;
+import com.example.consumption_monitor.DataManagement.Biometrics;
+import com.example.consumption_monitor.DataManagement.User;
 import com.example.course_project.R;
 
 import java.util.ArrayList;

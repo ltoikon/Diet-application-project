@@ -1,4 +1,4 @@
-package com.example.course_project.Fragments;
+package com.example.consumption_monitor.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.course_project.Activities.FragmentController;
-import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.ProtectPassword;
-import com.example.course_project.DataManagement.Salt;
-import com.example.course_project.Interfaces.OnFragmentInteractionListener;
+import com.example.consumption_monitor.Activities.FragmentController;
+import com.example.consumption_monitor.DataManagement.FileIO;
+import com.example.consumption_monitor.DataManagement.ProtectPassword;
+import com.example.consumption_monitor.DataManagement.Salt;
+import com.example.consumption_monitor.DataManagement.User;
+import com.example.consumption_monitor.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
-import com.example.course_project.DataManagement.User;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;

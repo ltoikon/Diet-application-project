@@ -1,4 +1,4 @@
-package com.example.course_project.Fragments;
+package com.example.consumption_monitor.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.Biometrics;
-import com.example.course_project.DataManagement.User;
+import com.example.consumption_monitor.DataManagement.Consumption;
+import com.example.consumption_monitor.DataManagement.FileIO;
+import com.example.consumption_monitor.DataManagement.User;
 import com.example.course_project.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -25,49 +25,46 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BiometricsLog extends Fragment {
-    static BiometricsLog biometricsLog = new BiometricsLog();
+public class ConsumptionLog extends Fragment {
+    static ConsumptionLog consumptionLog = new ConsumptionLog();
 
-    private BiometricsLog() {
+    ArrayList<Consumption> consumptionList = new ArrayList<>();
+
+    private ConsumptionLog() {
     }
 
-    public static BiometricsLog getInstance() {
-        return biometricsLog;
+    public static ConsumptionLog getInstance() {
+        return consumptionLog;
     }
 
-    private TextView textLog;
-    private LineChart chart;
-    ArrayList<Biometrics> biometricsList = new ArrayList<>();
     FileIO fileIO = FileIO.getInstance();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_biometrics_log, container, false);
+        View view = inflater.inflate(R.layout.fragment_consumption_log, container, false);
         Context context = getActivity().getApplicationContext();
 
         User profile = (User) getArguments().getSerializable("User");
-        String fileName = profile.getFirstName() + profile.getLastName() + "BiometricsList.ser";
+        String fileName = profile.getFirstName() + profile.getLastName() + "MealList.ser";
 
-        textLog = view.findViewById(R.id.textViewLog);
-        chart = (LineChart) view.findViewById(R.id.chart);
-        biometricsList = (ArrayList<Biometrics>) fileIO.readObjects(context, fileName);
-
+        TextView textLog = view.findViewById(R.id.textViewLog);
         textLog.setMovementMethod(new ScrollingMovementMethod());
-
+        LineChart chart = (LineChart) view.findViewById(R.id.chart);
+        consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        String sDate = "Date", sWeight = "Weight", sBmi = "BMI";
-        textLog.setText(String.format("%-26s %-18s %-5s\n", sDate, sWeight, sBmi));
-        for (Biometrics biometrics : biometricsList) {
-            textLog.append(String.format("%-20s %-20s %-5.1f\n",
-                    dateFormat.format(biometrics.getDate()), biometrics.getWeight(), biometrics.getBmi()));
+        String sDate = "Date", sCo2Amount = "CO2eq";
+        textLog.setText(String.format("%-26s %-5s\n", sDate, sCo2Amount));
+        for (Consumption consumption : consumptionList) {
+            textLog.append(String.format("%-20s %-5.1f\n",
+                                dateFormat.format(consumption.getDate()), consumption.getCo2amount()));
         }
 
         List<Entry> entries = new ArrayList<Entry>();
         int i = 0;
-        for (Biometrics data : biometricsList) {
+        for (Consumption data : consumptionList) {
             i++;
-            entries.add(new Entry(i, (float) data.getWeight()));
+            entries.add(new Entry(i, (float) data.getCo2amount()));
             System.out.println(i);
         }
 

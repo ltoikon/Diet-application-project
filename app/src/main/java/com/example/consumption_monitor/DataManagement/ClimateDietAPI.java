@@ -1,4 +1,4 @@
-package com.example.course_project.DataManagement;
+package com.example.consumption_monitor.DataManagement;
 
 import org.json.JSONException;
 import org.json.JSONObject;

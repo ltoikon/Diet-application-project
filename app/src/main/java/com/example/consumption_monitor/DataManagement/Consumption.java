@@ -1,4 +1,4 @@
-package com.example.course_project.DataManagement;
+package com.example.consumption_monitor.DataManagement;
 
 import java.io.Serializable;
 import java.util.Date;

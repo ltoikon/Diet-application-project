@@ -1,4 +1,4 @@
-package com.example.course_project.DataManagement;
+package com.example.consumption_monitor.DataManagement;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

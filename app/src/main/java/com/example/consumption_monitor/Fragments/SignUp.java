@@ -1,6 +1,5 @@
-package com.example.course_project.Fragments;
+package com.example.consumption_monitor.Fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -17,11 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.course_project.DataManagement.FileIO;
-import com.example.course_project.DataManagement.ProtectPassword;
-import com.example.course_project.DataManagement.User;
-import com.example.course_project.DataManagement.Salt;
-import com.example.course_project.Interfaces.OnFragmentInteractionListener;
+import com.example.consumption_monitor.DataManagement.FileIO;
+import com.example.consumption_monitor.DataManagement.ProtectPassword;
+import com.example.consumption_monitor.DataManagement.Salt;
+import com.example.consumption_monitor.DataManagement.User;
+import com.example.consumption_monitor.Interfaces.OnFragmentInteractionListener;
 import com.example.course_project.R;
 
 import java.security.NoSuchAlgorithmException;

@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Harkkalogin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.FragmentController"
+        <activity android:name="com.example.consumption_monitor.Activities.FragmentController"
             android:theme="@style/Theme.Harkkalogin.NoActionBar"></activity>
-        <activity android:name=".Activities.StartAppFragmentController">
+        <activity android:name="com.example.consumption_monitor.Activities.StartAppFragmentController">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.course_project.Activities;
+package com.example.consumption_monitor.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.course_project.DataManagement.User;
-import com.example.course_project.Fragments.ConsumptionEntry;
-import com.example.course_project.Fragments.ConsumptionLog;
-import com.example.course_project.Fragments.BiometricsEntry;
-import com.example.course_project.Fragments.BiometricsLog;
+import com.example.consumption_monitor.Fragments.BiometricsEntry;
+import com.example.consumption_monitor.DataManagement.User;
+import com.example.consumption_monitor.Fragments.ConsumptionEntry;
+import com.example.consumption_monitor.Fragments.ConsumptionLog;
+import com.example.consumption_monitor.Fragments.BiometricsLog;
 import com.example.course_project.R;
 import com.google.android.material.navigation.NavigationView;
 

@@ -1,4 +1,4 @@
-package com.example.course_project.Interfaces;
+package com.example.consumption_monitor.Interfaces;
 
 public interface OnFragmentInteractionListener {
     public void changeFragment(int id);
