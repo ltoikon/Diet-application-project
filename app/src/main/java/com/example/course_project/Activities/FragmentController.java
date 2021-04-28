@@ -25,6 +25,8 @@ public class FragmentController extends AppCompatActivity implements NavigationV
 
     private DrawerLayout drawer;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class FragmentController extends AppCompatActivity implements NavigationV
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            User user = (User) getIntent().getSerializableExtra("User");
+            user = (User) getIntent().getSerializableExtra("User");
             System.out.println("Changing to Consumption Entry");
             Fragment mealEntry = ConsumptionEntry.getInstance();
             sendUserDataToFragment(user, mealEntry);
@@ -54,7 +56,7 @@ public class FragmentController extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        User user = (User) getIntent().getSerializableExtra("User");
+        user = (User) getIntent().getSerializableExtra("User");
 
         switch (item.getItemId()) {
             case (R.id.nav_consumptionEntry):

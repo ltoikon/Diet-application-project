@@ -1,5 +1,6 @@
 package com.example.course_project.Fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -62,7 +63,8 @@ public class SignUp extends Fragment {
 
     FileIO fileIO = FileIO.getInstance();
 
-    private SignUp() {}
+    private SignUp() {
+    }
 
     public static SignUp getInstance() {
         return signUp;
@@ -317,13 +319,13 @@ public class SignUp extends Fragment {
         Pattern pattern;
         Matcher matcher;
         final String PASSWORD_PATTERN = "^" +
-                                        "(?=.*[0-9])" +  //Must contain at least one number
-                                        "(?=.*[a-z])" +  //Must contain at least one lower case letter
-                                        "(?=.*[A-Z])" +  //Must contain at least one upper case letter
-                                        "(?=.*[!@#£¤$%&/=?+€*_<>])" + //At least one special character
-                                        "(?=\\S+$)" + // Can't contain whitespaces
-                                        ".{12,}" + // At least 8 characters
-                                        "$";
+                "(?=.*[0-9])" +  //Must contain at least one number
+                "(?=.*[a-z])" +  //Must contain at least one lower case letter
+                "(?=.*[A-Z])" +  //Must contain at least one upper case letter
+                "(?=.*[!@#£¤$%&/=?+€*_<>])" + //At least one special character
+                "(?=\\S+$)" + // Can't contain whitespaces
+                ".{12,}" + // At least 8 characters
+                "$";
 
         String pw = editTextPassword.getText().toString();
         pattern = Pattern.compile(PASSWORD_PATTERN);

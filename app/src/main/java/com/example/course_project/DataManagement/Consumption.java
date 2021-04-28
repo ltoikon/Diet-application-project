@@ -3,14 +3,11 @@ package com.example.course_project.DataManagement;
 import java.io.Serializable;
 import java.util.Date;
 
-
-
 public class Consumption implements Serializable {
     private Date date;
     private int pork, fish, beef, dairy, cheese, rice, egg, winterSalad; //Food in grams. Food compared to average then given to API
     private String timing;
     private double co2amount; //value fetched from API
-
 
 
     /*constructor*/
@@ -31,15 +28,19 @@ public class Consumption implements Serializable {
     }
 
     /*co2 amount using food ingredient info*/
-    public double fetchClimateDiet (){
+    public double fetchClimateDiet() {
         double result;
         ClimateDietAPI climateDiet = new ClimateDietAPI(); //alternative would be giving here food values
         result = climateDiet.calculate(pork, fish, beef, dairy, cheese, rice, egg, winterSalad);
         return result;
     }
 
-    public Date getDate() {return date;}
+    public Date getDate() {
+        return date;
+    }
 
-    public double getCo2amount() {return co2amount;}
+    public double getCo2amount() {
+        return co2amount;
+    }
 
 }

@@ -24,7 +24,7 @@ public class ProtectPassword {
         return newPassword;
     }
 
-    public static byte[] getSalt() throws  NoSuchAlgorithmException {
+    public static byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);

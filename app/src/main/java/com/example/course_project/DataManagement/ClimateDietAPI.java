@@ -24,8 +24,8 @@ public class ClimateDietAPI {
     private final double aveDairy = 3800;
     private final double aveRice = 90;
     private final double aveWinterSalad = 1400; // finn average grams per week,
-    public ClimateDietAPI(){
 
+    public ClimateDietAPI() {
     }
 
     public double calculate(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
@@ -46,13 +46,13 @@ public class ClimateDietAPI {
     }
 
     public String formingUrl(int pork, int fish, int beef, int dairy, int cheese, int rice, int egg, int winterSalad){
-        Double doublePork = (Double.valueOf(pork)/ avePork)*100;
-        Double doubleFish = (Double.valueOf(fish)/aveFish)*100;
-        Double doubleBeef = (Double.valueOf(beef)/aveBeef)*100;
-        Double doubleDairy = (Double.valueOf(dairy)/aveDairy)*100;
-        Double doubleCheese = (Double.valueOf(cheese)/aveCheese)*100;
-        Double doubleRice = (Double.valueOf(rice)/aveRice)*100;
-        Double doubleWinterSalad = (Double.valueOf(winterSalad)/aveWinterSalad)*100;
+        double doublePork = ((double) pork / avePork)*100;
+        double doubleFish = ((double) fish /aveFish)*100;
+        double doubleBeef = ((double) beef /aveBeef)*100;
+        double doubleDairy = ((double) dairy /aveDairy)*100;
+        double doubleCheese = ((double) cheese /aveCheese)*100;
+        double doubleRice = ((double) rice /aveRice)*100;
+        double doubleWinterSalad = ((double) winterSalad /aveWinterSalad)*100;
 
         pork = (int) Math.round(doublePork);
         fish = (int) Math.round(doubleFish);
@@ -92,9 +92,7 @@ public class ClimateDietAPI {
             }
             response = sb.toString();
             in.close(); // input stream closed
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
+        } catch (ProtocolException | MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

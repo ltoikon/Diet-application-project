@@ -29,8 +29,8 @@
     <string name="winterSalad">Vegetables (Green house)</string>
 
     <!-- fragment_biometrics_entry.xml -->
-    <string name="height">Height</string>
-    <string name="weight">Weight</string>
+    <string name="height">Height (cm)</string>
+    <string name="weight">Weight (kg)</string>
     <string name="kilograms">Kilograms</string>
     <string name="centimeters">Centimeters</string>
 
