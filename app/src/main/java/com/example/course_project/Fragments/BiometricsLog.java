@@ -56,10 +56,14 @@ public class BiometricsLog extends Fragment {
         textLog.setMovementMethod(new ScrollingMovementMethod());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        textLog.setText("Date ; Weight ; BMI\n");
+        String sDate = "Date", sWeight = "Weight", sBmi = "BMI";
+        textLog.setText(String.format("%-26s %-18s %-5s\n", sDate, sWeight, sBmi));
         for (Biometrics biometrics : biometricsList) {
-            textLog.append(dateFormat.format(biometrics.getDate()) + " ; " + biometrics.getWeight() + " ; " + biometrics.getBmi() + "\n");
+            textLog.append(String.format("%-20s %-20s %-5.1f\n",
+                    dateFormat.format(biometrics.getDate()), biometrics.getWeight(), biometrics.getBmi()));
+            //textLog.append(String.format(dateFormat.format(biometrics.getDate()) + " ; " + biometrics.getWeight() + " ; " + String.format("%.1f",biometrics.getBmi()) + "\n"));
         }
+
 
         List<Entry> entries = new ArrayList<Entry>();
         int i = 0;

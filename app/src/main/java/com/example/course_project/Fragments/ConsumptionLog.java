@@ -21,6 +21,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +55,13 @@ public class ConsumptionLog extends Fragment {
         LineChart chart = (LineChart) view.findViewById(R.id.chart);
         consumptionList = (ArrayList<Consumption>) fileIO.readObjects(context, fileName);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        textLog.setText("Date ; co2amount\n");
+        String sDate = "Date", sCo2Amount = "CO2eq";
+        //textLog.setText("Date ; co2amount\n");
+        textLog.setText(String.format("%-26s %-5s\n", sDate, sCo2Amount));
         for (Consumption consumption : consumptionList) {
-            textLog.append(dateFormat.format(consumption.getDate()) + " ; " + consumption.getCo2amount() + "\n");
-
+            //textLog.append(dateFormat.format(consumption.getDate()) + " ; " + String.format("%.1f", consumption.getCo2amount()) + "\n");
+            textLog.append(String.format("%-20s %-5.1f\n",
+                                dateFormat.format(consumption.getDate()), consumption.getCo2amount()));
         }
 
         List<Entry> entries = new ArrayList<Entry>();
