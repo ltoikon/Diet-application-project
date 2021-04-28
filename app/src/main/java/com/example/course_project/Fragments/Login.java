@@ -43,7 +43,6 @@ public class Login extends Fragment {
     private EditText editTextEmail, editTextPassword;
     private TextView emailError, passwordError;
     private Button bLogin, bSignUp, bShow;
-    private Button printUserList; //todo this is temporary
     private boolean showing = false;
 
     FileIO fileIO = FileIO.getInstance();
@@ -82,9 +81,6 @@ public class Login extends Fragment {
         bLogin = view.findViewById(R.id.buttonLogIn);
         bSignUp = view.findViewById(R.id.buttonSignUp);
         bShow = view.findViewById(R.id.buttonShowPassword);
-
-
-        printUserList = view.findViewById(R.id.printUserList); //todo this is temporary
 
         editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
@@ -153,29 +149,6 @@ public class Login extends Fragment {
                 mListener.changeFragment(1); // 1 == SignUp fragment
             }
         });
-
-        //todo this is temporary
-        printUserList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userList = (ArrayList<User>) fileIO.readObjects(context, userFile);
-
-                int i = 0;
-                for (User user : userList) {
-                    i++;
-
-                    System.out.println("###");
-                    System.out.println("Listan " + i + ". jäsen");
-                    System.out.println("Email: " + user.getEmail());
-                    System.out.println("Nimi: " + user.getFirstName() + " " + user.getLastName());
-                    System.out.println("Syntymäpäivä: " + user.getBirthDate());
-                    System.out.println("Asuinpaikka: " + user.getHomeTown());
-                    System.out.println("Salasana: " + user.getPassword());
-                    System.out.println("###");
-                }
-            }
-        });
-
         return view;
     }
 

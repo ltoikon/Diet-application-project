@@ -96,15 +96,4 @@
         app:layout_constraintEnd_toEndOf="@+id/inputPassword"
         app:layout_constraintStart_toStartOf="@+id/inputPassword"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
-
-    <!-- todo this is temporary -->
-    <Button
-        android:id="@+id/printUserList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Print user list"
-        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

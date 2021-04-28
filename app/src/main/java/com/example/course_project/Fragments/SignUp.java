@@ -201,8 +201,6 @@ public class SignUp extends Fragment {
                     System.out.println("Rekisteröityminen onnistui!");
 
                     mListener.changeFragment(0); // 0 == Login fragment
-
-                    //todo Confirm screen
                 }
             }
         });
