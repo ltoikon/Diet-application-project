@@ -20,9 +20,6 @@
             android:id="@+id/nav_biometrics_log"
             android:icon="@drawable/ic_chart"
             android:title="@string/biometrics_log" />
-        <item
-            android:id="@+id/nav_profile"
-            android:title="@string/profile" />
     </group>
 
     <item android:title="Settings">

@@ -91,9 +91,6 @@ public class FragmentController extends AppCompatActivity implements NavigationV
                 Toast.makeText(this, "Change to Chat fragment", Toast.LENGTH_SHORT).show();
                 changeActivity();
                 break;
-            case (R.id.nav_profile):
-                Toast.makeText(this, "Change to Profile fragment", Toast.LENGTH_SHORT).show();
-                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
