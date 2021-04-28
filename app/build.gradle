@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.harkka_login"
+        applicationId "com.example.consumption_monitor"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
