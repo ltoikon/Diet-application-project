@@ -15,18 +15,17 @@
     <string name="email">Email</string>
     <string name="cancel">Cancel</string>
 
-    <!-- fragment_meal_entry.xml -->
-    <string name="timing">Timing</string>
+    <!-- fragment_consumption_entry.xml -->
     <string name="grams">Grams</string>
     <string name="pieces">Pcs</string>
-    <string name="pork">Pork and poultry</string>
-    <string name="beef">Beef</string>
-    <string name="fish">Fish</string>
-    <string name="dairy">Dairy</string>
-    <string name="cheese">Cheese</string>
+    <string name="pork">Pork and poultry (g)</string>
+    <string name="beef">Beef (g)</string>
+    <string name="fish">Fish (g)</string>
+    <string name="dairy">Dairy (g)</string>
+    <string name="cheese">Cheese (g)</string>
     <string name="eggs">Eggs</string>
-    <string name="rice">Rice</string>
-    <string name="winterSalad">Vegetables (Green house)</string>
+    <string name="rice">Rice (g)</string>
+    <string name="winterSalad">Vegetables (Green house) (g)</string>
 
     <!-- fragment_biometrics_entry.xml -->
     <string name="height">Height (cm)</string>
